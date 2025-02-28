@@ -93,7 +93,12 @@ body {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent
 }
-
+.form-check-input {
+    appearance: auto !important;  /* Ensures default checkbox appearance */
+    width: 16px;
+    height: 16px;
+    border: 1px solid #9ea2a5; /* Darker border for visibility */
+}
 hr {
     margin: 1.75rem 0;
     color: rgba(231, 234, 243, .7);
