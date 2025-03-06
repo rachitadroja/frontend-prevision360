@@ -741,7 +741,7 @@
                 <span class="nav-link-title">Milestone</span>
               </a>
             </div>
-            
+
             <div class="nav-item">
               <a class="nav-link active" href="./deals.html" data-placement="left">
                 <i class="bi-briefcase nav-icon"></i>
@@ -1071,7 +1071,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title" id="editMilestoneModalLabel">Edit Milestone</h1>
+        <h1 class="modal-title" id="editMilestoneModalLabel">Edit Goal</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -1091,7 +1091,7 @@
 
           <!-- Deal Association -->
           <div class="mb-3">
-            <label for="editMilestoneDeal" class="form-label">Associated Deal</label>
+            <label for="editMilestoneDeal" class="form-label">Deal</label>
             <select class="form-control" id="editMilestoneDeal">
               <option value="" disabled>Select a Deal</option>
               <!-- Deals will be dynamically populated -->
@@ -1100,13 +1100,8 @@
 
           <!-- Dates -->
           <div class="mb-3">
-            <label for="editDueDate" class="form-label">Due Date</label>
-            <input type="date" class="form-control" id="editDueDate">
-          </div>
-
-          <div class="mb-3">
-            <label for="editCompletionDate" class="form-label">Completion Date</label>
-            <input type="date" class="form-control" id="editCompletionDate">
+            <label for="editDueDate" class="form-label me-3">Due Date</label>
+            <input type="date" class="form-control"style="max-width: 250px;" id="editDueDate">
           </div>
 
           <div class="mb-3">
@@ -1116,14 +1111,28 @@
 
           <div class="mb-3">
             <label for="editModifiedDate" class="form-label">Modified Date</label>
-            <input type="date" class="form-control" id="editModifiedDate">
+            <input type="date" class="form-control" style="max-width: 250px;" id="editModifiedDate">
           </div>
 
-          <!-- Submit Button -->
-          <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+          <!-- Auto-filled Completion Date -->
+          <div class="mb-3">
+            <label for="editCompletionDate" class="form-label">Completion Date</label>
+            <input type="date" class="form-control" id="editCompletionDate" readonly>
           </div>
+
+          <!-- Mark as Completed Checkbox and Buttons in one row -->
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="markCompleted">
+                <label for="markCompleted" class="form-check-label">Mark as Completed</label>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </div>
+
         </form>
       </div>
     </div>
@@ -1226,11 +1235,11 @@
 
 
   <script>
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
     const milestoneTableBody = document.querySelector("#milestoneTableBody");
-    const editMilestoneModal = document.getElementById("editMilestoneModal");
+    let selectedGoalId = null; // To store the goal being edited
 
-    // Mock Data (Replace with API Fetch in real implementation)
+    // Mock Deals & Milestones (Replace with API Fetch in real implementation)
     const deals = [
         { id: 1, name: "Green Energy Corp" },
         { id: 2, name: "Tech Innovators" },
@@ -1238,10 +1247,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     const milestones = [
-        { id: 1, title: "Project Kickoff", description: "Initial project planning", dealId: 1, dueDate: "2025-03-01", completionDate: "2025-03-04", creationDate: "2025-02-20", modifiedDate: "2025-02-25" },
-        { id: 2, title: "Requirement Gathering", description: "Collect project requirements", dealId: 2, dueDate: "2025-03-10", completionDate: "2025-03-14", creationDate: "2025-02-22", modifiedDate: "2025-02-26" },
-        { id: 3, title: "Frontend", description: "Wireframing and UI/UX", dealId: null, dueDate: "2025-04-10", completionDate: "2025-04-14", creationDate: "2025-03-22", modifiedDate: "2025-03-26" },
-        { id: 4, title: "Backend", description: "API development", dealId: 3, dueDate: "2025-05-10", completionDate: "2025-05-14", creationDate: "2025-04-22", modifiedDate: "2025-04-26" }
+        { id: 1, title: "Project Kickoff", description: "Initial project planning", dealId: 1, dueDate: "2025-03-01", completionDate: "", creationDate: "2025-02-20", modifiedDate: "2025-02-25", is_completed: false },
+        { id: 2, title: "Requirement Gathering", description: "Collect project requirements", dealId: 2, dueDate: "2025-03-10", completionDate: "2025-03-14", creationDate: "2025-02-22", modifiedDate: "2025-02-26", is_completed: true },
+        { id: 3, title: "Frontend", description: "Wireframing and UI/UX", dealId: null, dueDate: "2025-04-10", completionDate: "", creationDate: "2025-03-22", modifiedDate: "2025-03-26", is_completed: false },
+        { id: 4, title: "Backend", description: "API development", dealId: 3, dueDate: "2025-05-10", completionDate: "", creationDate: "2025-04-22", modifiedDate: "2025-04-26", is_completed: false }
     ];
 
     // Function to get deal name by ID
@@ -1252,27 +1261,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to populate the milestone table
     const populateMilestones = () => {
-        milestoneTableBody.innerHTML = "";
-        milestones.forEach(milestone => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${milestone.title}</td>
-                <td>${milestone.description}</td>
-                <td>${getDealName(milestone.dealId)}</td>
-                <td>${milestone.dueDate}</td>
-                <td>${milestone.completionDate}</td>
-                <td>${milestone.creationDate}</td>
-                <td>${milestone.modifiedDate}</td>
-                <td>
-                    <button class="btn btn-sm edit-milestone" 
-                        data-bs-toggle="modal" data-bs-target="#editMilestoneModal"
-                        data-id="${milestone.id}">
-                        <i class="bi-pencil-fill"></i>
-                    </button>
-                </td>
-            `;
-            milestoneTableBody.appendChild(row);
-        });
+    milestoneTableBody.innerHTML = "";
+    milestones.forEach(milestone => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${milestone.title}</td>
+            <td>${milestone.description}</td>
+            <td>${getDealName(milestone.dealId)}</td>
+            <td>${milestone.dueDate}</td>
+            <td>${milestone.completionDate || '<span class="text-muted">Pending</span>'}</td>
+            <td>${milestone.creationDate}</td>
+            <td>${milestone.modifiedDate}</td>
+            <td class="actions-column">
+                <div class="d-flex justify-content-center align-items-center gap-2">
+                    ${milestone.is_completed ? 
+                        `<i class="bi-check-circle-fill text-success"></i>` : 
+                        `<button class="btn btn-sm p-0 edit-milestone" 
+                            data-bs-toggle="modal" data-bs-target="#editMilestoneModal"
+                            data-id="${milestone.id}">
+                            <i class="bi-pencil-fill"></i>
+                        </button>`}
+                </div>
+            </td>
+        `;
+        milestoneTableBody.appendChild(row);
+    });
+
+
 
         // Attach event listeners for edit buttons after populating table
         attachEditListeners();
@@ -1282,8 +1297,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const attachEditListeners = () => {
         document.querySelectorAll(".edit-milestone").forEach(button => {
             button.addEventListener("click", function () {
-                const milestoneId = parseInt(this.getAttribute("data-id"));
-                const milestone = milestones.find(m => m.id === milestoneId);
+                selectedGoalId = parseInt(this.getAttribute("data-id"));
+                const milestone = milestones.find(m => m.id === selectedGoalId);
 
                 if (milestone) {
                     document.getElementById("editMilestoneTitle").value = milestone.title;
@@ -1293,6 +1308,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById("editCreationDate").value = milestone.creationDate;
                     document.getElementById("editModifiedDate").value = milestone.modifiedDate;
 
+                    // Handle Completion Checkbox
+                    const markCompletedCheckbox = document.getElementById("markCompleted");
+                    markCompletedCheckbox.checked = milestone.is_completed;
+                    markCompletedCheckbox.disabled = milestone.is_completed;
+
                     // Populate the deals dropdown dynamically
                     const dealDropdown = document.getElementById("editMilestoneDeal");
                     dealDropdown.innerHTML = `<option value="" disabled>Select a Deal</option>`;
@@ -1300,19 +1320,68 @@ document.addEventListener("DOMContentLoaded", () => {
                         const option = document.createElement("option");
                         option.value = deal.id;
                         option.textContent = deal.name;
-                        if (deal.id === milestone.dealId) option.selected = true; // Select linked deal
+                        if (deal.id === milestone.dealId) option.selected = true;
                         dealDropdown.appendChild(option);
                     });
+
+                    // If already completed, disable all fields
+                    if (milestone.is_completed) {
+                        disableEditing();
+                    } else {
+                        enableEditing();
+                    }
                 }
             });
         });
     };
 
+    // Function to disable editing if milestone is completed
+    const disableEditing = () => {
+        document.getElementById("editMilestoneTitle").disabled = true;
+        document.getElementById("editMilestoneDescription").disabled = true;
+        document.getElementById("editMilestoneDeal").disabled = true;
+        document.getElementById("editDueDate").disabled = true;
+        document.getElementById("editModifiedDate").disabled = true;
+        document.querySelector(".btn-primary").style.display = "none";
+    };
+
+    // Function to enable editing if milestone is not completed
+    const enableEditing = () => {
+        document.getElementById("editMilestoneTitle").disabled = false;
+        document.getElementById("editMilestoneDescription").disabled = false;
+        document.getElementById("editMilestoneDeal").disabled = false;
+        document.getElementById("editDueDate").disabled = false;
+        document.getElementById("editModifiedDate").disabled = false;
+        document.querySelector(".btn-primary").style.display = "inline-block";
+    };
+
+    // Handle marking as complete
+    document.getElementById("markCompleted").addEventListener("change", function () {
+        if (this.checked) {
+            const today = new Date().toISOString().split("T")[0];
+            document.getElementById("editCompletionDate").value = today;
+            disableEditing();
+
+            // Send update request to backend
+            fetch(`/api/milestones/${selectedGoalId}/complete`, {
+                method: "POST",
+                body: JSON.stringify({ completion_date: today }),
+                headers: { "Content-Type": "application/json" }
+            }).then(() => {
+                // Update the milestone in UI and refresh table
+                const milestone = milestones.find(m => m.id === selectedGoalId);
+                if (milestone) {
+                    milestone.is_completed = true;
+                    milestone.completionDate = today;
+                    populateMilestones();
+                }
+            });
+        }
+    });
+
     // Populate table on page load
     populateMilestones();
 });
-
-
 
 
 //Deals Dropdown Dynamically in add goal

@@ -140,6 +140,24 @@ body {
     background-color: #3f7cff; /* Active Line in Button's Blue */
 }
 
+.actions-column {
+    text-align: center;
+    width: 60px; /* Ensures all action cells have the same width */
+}
+
+.actions-column i {
+    font-size: 16px; /* Ensures icons have a uniform size */
+    vertical-align: middle;
+}
+
+.actions-column .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Removes extra padding */
+    border: none;
+    background: none;
+}
 
 
 /*==============================================================================================*/
