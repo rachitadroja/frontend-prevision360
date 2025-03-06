@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Admin Page</title>
+  <title>Deals Page</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="./favicon.ico">
@@ -34,7 +34,6 @@
     {
       opacity: 0;
     }
-   
   </style>
 
   <script>
@@ -150,7 +149,7 @@
 
         <!-- End Navbar Vertical Toggle -->
 
-
+  
       </div>
 
       <div class="navbar-nav-wrap-content-end">
@@ -734,21 +733,21 @@
                 <span class="nav-link-title">People</span>
               </a>
             </div>
-
+            
             <div class="nav-item">
               <a class="nav-link active" href="./milestone.html" data-placement="left">
                 <i class="bi-flag nav-icon"></i>
                 <span class="nav-link-title">Milestone</span>
               </a>
             </div>
-
+            
             <div class="nav-item">
               <a class="nav-link active" href="./deals.html" data-placement="left">
                 <i class="bi-briefcase nav-icon"></i>
                 <span class="nav-link-title">Deals</span>
               </a>
             </div>
-
+  
             <span class="dropdown-header mt-4">Funding</span>
             <small class="nav-subtitle-replacer"></small>
 
@@ -888,1180 +887,749 @@
     </div>
   </aside>
 
-  <main id="content" role="main" class="main">
-    <!-- Content -->
-    <div class="content container-fluid">
-      <!-- Page Header -->
-      <div class="page-header">
-        <div class="row align-items-end">
-          <div class="col-sm mb-2 mb-sm-0">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb breadcrumb-no-gutter">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Admins</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Overview</li>
-              </ol>
-            </nav>
+    <main id="content" role="main" class="main">
+        <!-- Content -->
+        <div class="content container-fluid">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="row align-items-end">
+                    <div class="col-sm mb-2 mb-sm-0">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb breadcrumb-no-gutter">
+                                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
+                                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Company</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Overview</li>
+                            </ol>
+                        </nav>
+                        <h1 class="page-header-title">Deals</h1>
+                    </div>
 
-            <h1 class="page-header-title">Admins</h1>
-          </div>
-          <!-- End Col -->
-
-          <div class="col-sm-auto">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAdminModal">
-              <i class="bi-person-plus-fill me-1"></i> Add Admin
-            </button>
-          </div>
-          <!-- End Col -->
-        </div>
-        <!-- End Row -->
-      </div>
-      <!-- End Page Header -->
-
-
-      <!-- Card -->
-      <div class="card">
-        <!-- Header -->
-        <div class="card-header card-header-content-md-between">
-          <div class="mb-2 mb-md-0">
-            <form>
-              <!-- Search -->
-              <div class="input-group input-group-merge input-group-flush">
-                <div class="input-group-prepend input-group-text">
-                  <i class="bi-search"></i>
+                    <div class="col-sm-auto">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createDealModal">
+                            <i class="bi-plus me-1"></i>Create Deal
+                        </button>
+                    </div>
                 </div>
-                <input id="datatableSearch" type="search" class="form-control" placeholder="Search admin" aria-label="Search users">
-              </div>
-              <!-- End Search -->
-            </form>
-          </div>
-
-          <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
-            <!-- Datatable Info -->
-            <div id="datatableCounterInfo" style="display: none;">
-              <div class="d-flex align-items-center">
-                <span class="fs-5 me-3">
-                  <span id="datatableCounter">0</span>
-                  Selected
-                </span>
-                <a class="btn btn-outline-danger btn-sm" href="javascript:;">
-                  <i class="bi-trash"></i> Delete
-                </a>
-              </div>
             </div>
-            <!-- End Datatable Info -->
 
-          </div>
-        </div>
-        <!-- End Header -->
-<!-- Table -->
-<div class="table-responsive datatable-custom position-relative">
-    <table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table" data-hs-datatables-options='{
-             "columnDefs": [{
-                "targets": [0, 6],
-                "orderable": false
-              }],
-             "order": [],
-             "info": {
-               "totalQty": "#datatableWithPaginationInfoTotalQty"
-             },
-             "search": "#datatableSearch",
-             "entries": "#datatableEntries",
-             "pageLength": 15,
-             "isResponsive": false,
-             "isShowPaging": false,
-             "pagination": "datatablePagination"
-           }'>
-      <thead class="thead-light">
-        <tr>
-          <th class="table-column-pe-0">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
-              <label class="form-check-label" for="datatableCheckAll"></label>
-            </div>
-          </th>
-          <th style="color: black;">First Name</th>
-          <th style="color: black;">Last Name</th>
-          <th style="color: black;">Email Address</th>
-          <th style="color: black;">Role</th>
-          <th style="color: black;">Permissions</th>
-          <th style="color: black;">Actions</th>
-        </tr>
-      </thead>
-  
-      <tbody>
-        <tr>
-          <td class="table-column-pe-0">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="usersDataCheck1">
-              <label class="form-check-label" for="usersDataCheck1"></label>
-            </div>
-          </td>
-          <td>Amanda</td>
-          <td>Harvey</td>
-          <td>amanda@site.com</td>
-          <td>Founder</td>
-          <td>
-            <div>Manage Admins</div>
-            <div>Manage Company Profile</div>
-            <div>Manage People</div>
-            <div>Manage Milestones</div>
-            <div>Manage Investors</div>
-          </td>
-          <td>
-            <button type="button" class="btn btn-white btn-sm" data-bs-toggle="modal" data-bs-target="#editAdminModal">
-              <i class="bi-pencil-fill me-1"></i> Edit
-            </button>
-            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-              <i class="bi-trash me-1"></i> Delete
-            </button>
-          </td>
-        </tr>
-  
-        <tr>
-          <td class="table-column-pe-0">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="usersDataCheck2">
-              <label class="form-check-label" for="usersDataCheck2"></label>
-            </div>
-          </td>
-          <td>Anne</td>
-          <td>Richard</td>
-          <td>anne@site.com</td>
-          <td>Team Member</td>
-          <td>
-            <div>Manage Admins</div>
-            <div>Manage Company Profile</div>
-            <div>Manage People</div>
-          </td>
-          <td>
-            <button type="button" class="btn btn-white btn-sm" data-bs-toggle="modal" data-bs-target="#editAdminModal">
-              <i class="bi-pencil-fill me-1"></i> Edit
-            </button>
-            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-              <i class="bi-trash me-1"></i> Delete
-            </button>
-          </td>
-        </tr>
-  
-        <tr>
-            <td class="table-column-pe-0">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="usersDataCheck2">
-                <label class="form-check-label" for="usersDataCheck2"></label>
-              </div>
-            </td>
-            <td>Anne</td>
-            <td>Richard</td>
-            <td>anne@site.com</td>
-            <td>Team Member</td>
-            <td>
-              <div>Manage Admins</div>
-              <div>Manage Company Profile</div>
-              <div>Manage People</div>
-            </td>
-            <td>
-              <button type="button" class="btn btn-white btn-sm" data-bs-toggle="modal" data-bs-target="#editAdminModal">
-                <i class="bi-pencil-fill me-1"></i> Edit
-              </button>
-              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                <i class="bi-trash me-1"></i> Delete
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td class="table-column-pe-0">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="usersDataCheck2">
-                <label class="form-check-label" for="usersDataCheck2"></label>
-              </div>
-            </td>
-            <td>Anne</td>
-            <td>Richard</td>
-            <td>anne@site.com</td>
-            <td>Team Member</td>
-            <td>
-              <div>Manage Admins</div>
-              <div>Manage Company Profile</div>
-              <div>Manage People</div>
-            </td>
-            <td>
-              <button type="button" class="btn btn-white btn-sm" data-bs-toggle="modal" data-bs-target="#editAdminModal">
-                <i class="bi-pencil-fill me-1"></i> Edit
-              </button>
-              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                <i class="bi-trash me-1"></i> Delete
-              </button>
-            </td>
-          </tr>
-        <!-- More rows as needed -->
-  
-      </tbody>
-    </table>
-  </div>
-  <!-- End Table -->
+            <!-- Card -->
+            <div class="card">
+                <!-- Header -->
+                <div class="card-header card-header-content-md-between">
+                    <div class="mb-2 mb-md-0">
+                        <form>
+                            <div class="input-group input-group-merge input-group-flush">
+                                <div class="input-group-prepend input-group-text">
+                                    <i class="bi-search"></i>
+                                </div>
+                                <input id="datatableSearch" type="search" class="form-control" placeholder="Search Deals" aria-label="Search Deals">
+                            </div>
+                        </form>
+                    </div>
 
+                    <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
+                        <div id="datatableCounterInfo" style="display: none;">
+                            <div class="d-flex align-items-center">
+                                <span class="fs-5 me-3">
+                                    <span id="datatableCounter">0</span> Selected
+                                </span>
+                                <a class="btn btn-outline-danger btn-sm" href="javascript:;">
+                                    <i class="bi-trash"></i> Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Table -->
+                <div class="table-responsive datatable-custom position-relative">
+                    <table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table" data-hs-datatables-options='{
+                        "columnDefs": [{"targets": [0, 10], "orderable": false}],
+                        "order": [[1, "asc"]],
+                        "info": {"totalQty": "#datatableWithPaginationInfoTotalQty"},
+                        "search": "#datatableSearch",
+                        "entries": "#datatableEntries",
+                        "pageLength": 15,
+                        "pagination": "datatablePagination"
+                    }'>
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="table-column-pe-0">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="datatableCheckAll">
+                                        <label class="form-check-label" for="datatableCheckAll"></label>
+                                    </div>
+                                </th>
+                                <th style="color: black;">Deal Name</th>
+                                <th style="color: black;">Deal Type</th>
+                                <th style="color: black;">Description</th>
+                                <th style="color: black;">Date of Proposal</th>
+                                <th style="color: black;">Creation</th>
+                                <th style="color: black;">Deal Closure</th>
+                                <th style="color: black;">Funding Stage</th>
+                                <th style="color: black;">Total Investment Amount</th>
+                                <th style="color: black;">Equity Stake Offered</th>
+                                <th style="color: black;">Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                
+                        </tbody>
+                        
+                    </table>
+                </div>
+
+                <!-- Footer -->
         <!-- Footer -->
         <div class="card-footer">
-          <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
-            <div class="col-sm mb-2 mb-sm-0">
-              <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
-                <span class="me-2">Showing:</span>
-
-                <!-- Select -->
-                <div class="tom-select-custom">
-                  <select id="datatableEntries" class="js-select form-select form-select-borderless w-auto" autocomplete="off" data-hs-tom-select-options='{
-                            "searchInDropdown": false,
-                            "hideSearch": true
-                          }'>
-                          <option value="25">25</option>
-                          <option value="50" selected>50</option>
-                          <option value="75">75</option>
-                          <option value="100">100</option>
-                  </select>
+            <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+              <div class="col-sm mb-2 mb-sm-0">
+                <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
+                  <span class="me-2">Showing:</span>
+  
+                  <!-- Select -->
+                  <div class="tom-select-custom">
+                    <select id="datatableEntries" class="js-select form-select form-select-borderless w-auto" autocomplete="off" data-hs-tom-select-options='{
+                              "searchInDropdown": false,
+                              "hideSearch": true
+                            }'>
+                      <option value="25" selected>25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+                  <!-- End Select -->
+  
+                  <span class="text-secondary me-2">of</span>
+  
+                  <!-- Pagination Quantity -->
+                  <span id="datatableWithPaginationInfoTotalQty"></span>
                 </div>
-                <!-- End Select -->
-
-                <span class="text-secondary me-2">of</span>
-
-                <!-- Pagination Quantity -->
-                <span id="datatableWithPaginationInfoTotalQty"></span>
               </div>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-sm-auto">
-              <div class="d-flex justify-content-center justify-content-sm-end">
-                <!-- Pagination -->
-                <nav id="datatablePagination" aria-label="Activity pagination"></nav>
+              <!-- End Col -->
+  
+              <div class="col-sm-auto">
+                <div class="d-flex justify-content-center justify-content-sm-end">
+                  <!-- Pagination -->
+                  <nav id="datatablePagination" aria-label="Activity pagination"></nav>
+                </div>
               </div>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-        <!-- End Footer -->
-      </div>
-      <!-- End Card -->
-    </div>
-    <!-- End Content -->
-
-    <!-- Footer -->
-
-    <div class="footer">
-      <div class="row justify-content-between align-items-center">
-        <div class="col">
-          <p class="fs-6 mb-0">&copy; Front. <span class="d-none d-sm-inline-block">2022 Htmlstream.</span></p>
-        </div>
-        <!-- End Col -->
-
-        <div class="col-auto">
-          <div class="d-flex justify-content-end">
-            <!-- List Separator -->
-            <ul class="list-inline list-separator">
-              <li class="list-inline-item">
-                <a class="list-separator-link" href="#">FAQ</a>
-              </li>
-
-              <li class="list-inline-item">
-                <a class="list-separator-link" href="#">License</a>
-              </li>
-
-              <li class="list-inline-item">
-                <!-- Keyboard Shortcuts Toggle -->
-                <button class="btn btn-ghost-secondary btn btn-icon btn-ghost-secondary rounded-circle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasKeyboardShortcuts" aria-controls="offcanvasKeyboardShortcuts">
-                  <i class="bi-command"></i>
-                </button>
-                <!-- End Keyboard Shortcuts Toggle -->
-              </li>
-            </ul>
-            <!-- End List Separator -->
-          </div>
-        </div>
-        <!-- End Col -->
-      </div>
-      <!-- End Row -->
-    </div>
-
-    <!-- End Footer -->
-  </main>
-  <!-- ========== END MAIN CONTENT ========== -->
-
-  <!-- ========== SECONDARY CONTENTS ========== -->
-  <!-- Keyboard Shortcuts -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasKeyboardShortcuts" aria-labelledby="offcanvasKeyboardShortcutsLabel">
-    <div class="offcanvas-header">
-      <h4 id="offcanvasKeyboardShortcutsLabel" class="mb-0">Keyboard shortcuts</h4>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <div class="list-group list-group-sm list-group-flush list-group-no-gutters mb-5">
-        <div class="list-group-item">
-          <h5 class="mb-1">Formatting</h5>
-        </div>
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span class="fw-semibold">Bold</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">b</kbd>
-            </div>
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <em>italic</em>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">i</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <u>Underline</u>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">u</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <s>Strikethrough</s>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">Alt</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">s</kbd>
               <!-- End Col -->
             </div>
-          </div>
-          <!-- End Row -->
+            <!-- End Row -->
         </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span class="small">Small text</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">s</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <mark>Highlight</mark>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">e</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-      </div>
-
-      <div class="list-group list-group-sm list-group-flush list-group-no-gutters mb-5">
-        <div class="list-group-item">
-          <h5 class="mb-1">Insert</h5>
-        </div>
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Mention person <a href="#">(@Brian)</a></span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">@</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Link to doc <a href="#">(+Meeting notes)</a></span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">+</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <a href="#">#hashtag</a>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">#hashtag</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Date</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">/date</kbd>
-              <kbd class="d-inline-block mb-1">Space</kbd>
-              <kbd class="d-inline-block mb-1">/datetime</kbd>
-              <kbd class="d-inline-block mb-1">/datetime</kbd>
-              <kbd class="d-inline-block mb-1">Space</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Time</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">/time</kbd>
-              <kbd class="d-inline-block mb-1">Space</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Note box</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">/note</kbd>
-              <kbd class="d-inline-block mb-1">Enter</kbd>
-              <kbd class="d-inline-block mb-1">/note red</kbd>
-              <kbd class="d-inline-block mb-1">/note red</kbd>
-              <kbd class="d-inline-block mb-1">Enter</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-      </div>
-
-      <div class="list-group list-group-sm list-group-flush list-group-no-gutters mb-5">
-        <div class="list-group-item">
-          <h5 class="mb-1">Editing</h5>
-        </div>
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Find and replace</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">r</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Find next</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">n</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Find previous</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">p</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Indent</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Tab</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Un-indent</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Shift</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">Tab</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Move line up</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">Shift</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1"><i class="bi-arrow-up-short"></i></kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Move line down</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">Shift</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1"><i class="bi-arrow-down-short fs-5"></i></kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Add a comment</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">Alt</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">m</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Undo</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">z</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Redo</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">y</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-      </div>
-
-      <div class="list-group list-group-sm list-group-flush list-group-no-gutters">
-        <div class="list-group-item">
-          <h5 class="mb-1">Application</h5>
-        </div>
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Create new doc</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">Alt</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">n</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Present</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">Shift</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">p</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Share</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">Shift</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">s</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Search docs</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">Shift</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">o</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col-5">
-              <span>Keyboard shortcuts</span>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-7 text-end">
-              <kbd class="d-inline-block mb-1">Ctrl</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">Shift</kbd> <span class="text-muted small">+</span> <kbd class="d-inline-block mb-1">/</kbd>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!-- End Keyboard Shortcuts -->
-
-  <!-- Activity -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasActivityStream" aria-labelledby="offcanvasActivityStreamLabel">
-    <div class="offcanvas-header">
-      <h4 id="offcanvasActivityStreamLabel" class="mb-0">Activity stream</h4>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <!-- Step -->
-      <ul class="step step-icon-sm step-avatar-sm">
-        <!-- Step Item -->
-        <li class="step-item">
-          <div class="step-content-wrapper">
-            <div class="step-avatar">
-              <img class="step-avatar" src="./assets/img/160x160/img9.jpg" alt="Image Description">
-            </div>
-
-            <div class="step-content">
-              <h5 class="mb-1">Iana Robinson</h5>
-
-              <p class="fs-5 mb-1">Added 2 files to task <a class="text-uppercase" href="#"><i class="bi-journal-bookmark-fill"></i> Fd-7</a></p>
-
-              <ul class="list-group list-group-sm">
-                <!-- List Item -->
-                <li class="list-group-item list-group-item-light">
-                  <div class="row gx-1">
-                    <div class="col-6">
-                      <!-- Media -->
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <img class="avatar avatar-xs" src="./assets/svg/brands/excel-icon.svg" alt="Image Description">
-                        </div>
-                        <div class="flex-grow-1 text-truncate ms-2">
-                          <span class="d-block fs-6 text-dark text-truncate" title="weekly-reports.xls">weekly-reports.xls</span>
-                          <span class="d-block small text-muted">12kb</span>
-                        </div>
-                      </div>
-                      <!-- End Media -->
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-6">
-                      <!-- Media -->
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <img class="avatar avatar-xs" src="./assets/svg/brands/word-icon.svg" alt="Image Description">
-                        </div>
-                        <div class="flex-grow-1 text-truncate ms-2">
-                          <span class="d-block fs-6 text-dark text-truncate" title="weekly-reports.xls">weekly-reports.xls</span>
-                          <span class="d-block small text-muted">4kb</span>
-                        </div>
-                      </div>
-                      <!-- End Media -->
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-                </li>
-                <!-- End List Item -->
-              </ul>
-
-              <span class="small text-muted text-uppercase">Now</span>
-            </div>
-          </div>
-        </li>
-        <!-- End Step Item -->
-
-        <!-- Step Item -->
-        <li class="step-item">
-          <div class="step-content-wrapper">
-            <span class="step-icon step-icon-soft-dark">B</span>
-
-            <div class="step-content">
-              <h5 class="mb-1">Bob Dean</h5>
-
-              <p class="fs-5 mb-1">Marked <a class="text-uppercase" href="#"><i class="bi-journal-bookmark-fill"></i> Fr-6</a> as <span class="badge bg-soft-success text-success rounded-pill"><span class="legend-indicator bg-success"></span>"Completed"</span></p>
-
-              <span class="small text-muted text-uppercase">Today</span>
-            </div>
-          </div>
-        </li>
-        <!-- End Step Item -->
-
-        <!-- Step Item -->
-        <li class="step-item">
-          <div class="step-content-wrapper">
-            <div class="step-avatar">
-              <img class="step-avatar-img" src="./assets/img/160x160/img3.jpg" alt="Image Description">
-            </div>
-
-            <div class="step-content">
-              <h5 class="h5 mb-1">Crane</h5>
-
-              <p class="fs-5 mb-1">Added 5 card to <a href="#">Payments</a></p>
-
-              <ul class="list-group list-group-sm">
-                <li class="list-group-item list-group-item-light">
-                  <div class="row gx-1">
-                    <div class="col">
-                      <img class="img-fluid rounded" src="./assets/svg/components/card-1.svg" alt="Image Description">
-                    </div>
-                    <div class="col">
-                      <img class="img-fluid rounded" src="./assets/svg/components/card-2.svg" alt="Image Description">
-                    </div>
-                    <div class="col">
-                      <img class="img-fluid rounded" src="./assets/svg/components/card-3.svg" alt="Image Description">
-                    </div>
-                    <div class="col-auto align-self-center">
-                      <div class="text-center">
-                        <a href="#">+2</a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-
-              <span class="small text-muted text-uppercase">May 12</span>
-            </div>
-          </div>
-        </li>
-        <!-- End Step Item -->
-
-        <!-- Step Item -->
-        <li class="step-item">
-          <div class="step-content-wrapper">
-            <span class="step-icon step-icon-soft-info">D</span>
-
-            <div class="step-content">
-              <h5 class="mb-1">David Lidell</h5>
-
-              <p class="fs-5 mb-1">Added a new member to Front Dashboard</p>
-
-              <span class="small text-muted text-uppercase">May 15</span>
-            </div>
-          </div>
-        </li>
-        <!-- End Step Item -->
-
-        <!-- Step Item -->
-        <li class="step-item">
-          <div class="step-content-wrapper">
-            <div class="step-avatar">
-              <img class="step-avatar-img" src="./assets/img/160x160/img7.jpg" alt="Image Description">
-            </div>
-
-            <div class="step-content">
-              <h5 class="mb-1">Rachel King</h5>
-
-              <p class="fs-5 mb-1">Marked <a class="text-uppercase" href="#"><i class="bi-journal-bookmark-fill"></i> Fr-3</a> as <span class="badge bg-soft-success text-success rounded-pill"><span class="legend-indicator bg-success"></span>"Completed"</span></p>
-
-              <span class="small text-muted text-uppercase">Apr 29</span>
-            </div>
-          </div>
-        </li>
-        <!-- End Step Item -->
-
-        <!-- Step Item -->
-        <li class="step-item">
-          <div class="step-content-wrapper">
-            <div class="step-avatar">
-              <img class="step-avatar-img" src="./assets/img/160x160/img5.jpg" alt="Image Description">
-            </div>
-
-            <div class="step-content">
-              <h5 class="mb-1">Finch Hoot</h5>
-
-              <p class="fs-5 mb-1">Earned a "Top endorsed" <i class="bi-patch-check-fill text-primary"></i> badge</p>
-
-              <span class="small text-muted text-uppercase">Apr 06</span>
-            </div>
-          </div>
-        </li>
-        <!-- End Step Item -->
-
-        <!-- Step Item -->
-        <li class="step-item">
-          <div class="step-content-wrapper">
-            <span class="step-icon step-icon-soft-primary">
-              <i class="bi-person-fill"></i>
-            </span>
-
-            <div class="step-content">
-              <h5 class="mb-1">Project status updated</h5>
-
-              <p class="fs-5 mb-1">Marked <a class="text-uppercase" href="#"><i class="bi-journal-bookmark-fill"></i> Fr-3</a> as <span class="badge bg-soft-primary text-primary rounded-pill"><span class="legend-indicator bg-primary"></span>"In progress"</span></p>
-
-              <span class="small text-muted text-uppercase">Feb 10</span>
-            </div>
-          </div>
-        </li>
-        <!-- End Step Item -->
-      </ul>
-      <!-- End Step -->
-
-      <div class="d-grid">
-        <a class="btn btn-white" href="javascript:;">View all <i class="bi-chevron-right"></i></a>
-      </div>
-    </div>
-  </div>
-  <!-- End Activity -->
-
-  <!-- Welcome Message Modal -->
-  <div class="modal fade" id="welcomeMessageModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <!-- Header -->
-        <div class="modal-close">
-          <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm" data-bs-dismiss="modal" aria-label="Close">
-            <i class="bi-x-lg"></i>
-          </button>
-        </div>
-        <!-- End Header -->
-
-        <!-- Body -->
-        <div class="modal-body p-sm-5">
-          <div class="text-center">
-            <div class="w-75 w-sm-50 mx-auto mb-4">
-              <img class="img-fluid" src="./assets/svg/illustrations/oc-collaboration.svg" alt="Image Description" data-hs-theme-appearance="default">
-              <img class="img-fluid" src="./assets/svg/illustrations-light/oc-collaboration.svg" alt="Image Description" data-hs-theme-appearance="dark">
-            </div>
-
-            <h4 class="h1">Welcome to Front</h4>
-
-            <p>We're happy to see you in our community.</p>
-          </div>
-        </div>
-        <!-- End Body -->
-
-        <!-- Footer -->
-        <div class="modal-footer d-block text-center py-sm-5">
-          <small class="text-cap text-muted">Trusted by the world's best teams</small>
-
-          <div class="w-85 mx-auto">
-            <div class="row justify-content-between">
-              <div class="col">
-                <img class="img-fluid" src="./assets/svg/brands/gitlab-gray.svg" alt="Image Description">
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="./assets/svg/brands/fitbit-gray.svg" alt="Image Description">
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="./assets/svg/brands/flow-xo-gray.svg" alt="Image Description">
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="./assets/svg/brands/layar-gray.svg" alt="Image Description">
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Footer -->
-      </div>
-    </div>
-  </div>
-
-  <!-- End Welcome Message Modal -->
-
-
-
-<!-- Edit Admin Modal -->
-<div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="editAdminModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title" id="editAdminModalLabel">Edit Admin</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-  
-        <!-- Modal Body -->
-        <div class="modal-body">
-          <form>
-            <!-- First Name Form -->
-            <div class="row mb-4">
-              <label for="editFirstNameModalLabel" class="col-sm-3 col-form-label form-label">First Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="editFirstNameModalLabel" value="Ella">
-              </div>
-            </div>
-  
-            <!-- Last Name Form -->
-            <div class="row mb-4">
-              <label for="editLastNameModalLabel" class="col-sm-3 col-form-label form-label">Last Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="editLastNameModalLabel" value="Lauda">
-              </div>
-            </div>
-  
-            <!-- Email Form -->
-            <div class="row mb-4">
-              <label for="editEmailModalLabel" class="col-sm-3 col-form-label form-label">Email</label>
-              <div class="col-sm-9">
-                <input type="email" class="form-control" id="editEmailModalLabel" value="ella@site.com">
-              </div>
-            </div>
-  
-            <!-- Permissions -->
-            <div class="row mb-4">
-              <label class="col-sm-3 col-form-label form-label">Permissions</label>
-              <div class="col-sm-9">
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="editManageAdmins" checked>
-                  <label class="form-check-label" for="editManageAdmins">Manage Admins</label>
-                </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="editManageCompanyProfile">
-                  <label class="form-check-label" for="editManageCompanyProfile">Manage Company Profile</label>
-                </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="editManagePeople">
-                  <label class="form-check-label" for="editManagePeople">Manage People</label>
-                </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="editManageMilestone">
-                  <label class="form-check-label" for="editManageMilestone">Manage Milestone</label>
-                </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="editManageInvestors">
-                  <label class="form-check-label" for="editManageInvestors">Manage Investors</label>
-                </div>
-              </div>
-            </div>
-  
-            <!-- Actions -->
-            <div class="d-flex justify-content-end">
-              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary">Save Changes</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Edit Admin Modal -->
-
-
-
-
-<!-- Add Admin Modal -->
-<div class="modal fade" id="addAdminModal" tabindex="-1" aria-labelledby="addAdminModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title" id="addAdminModalLabel">Add New Admin</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <!-- Body -->
-      <div class="modal-body">
-        <form>
-          <!-- First Name Form -->
-          <div class="row mb-4">
-            <label for="addFirstNameModalLabel" class="col-sm-3 col-form-label form-label">First Name</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" name="addFirstNameModal" id="addFirstNameModalLabel" placeholder="First Name" aria-label="First Name" required>
-            </div>
-          </div>
-          <!-- End First Name Form -->
-
-          <!-- Last Name Form -->
-          <div class="row mb-4">
-            <label for="addLastNameModalLabel" class="col-sm-3 col-form-label form-label">Last Name</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" name="addLastNameModal" id="addLastNameModalLabel" placeholder="Last Name" aria-label="Last Name" required>
-            </div>
-          </div>
-          <!-- End Last Name Form -->
-
-          <!-- Email Form -->
-          <div class="row mb-4">
-            <label for="addEmailModalLabel" class="col-sm-3 col-form-label form-label">Email</label>
-            <div class="col-sm-9">
-              <input type="email" class="form-control" name="addEmailModal" id="addEmailModalLabel" placeholder="Email" aria-label="Email" required>
-            </div>
-          </div>
-          <!-- End Email Form -->
-
-          <!-- Permissions Form -->
-          <div class="row mb-4">
-            <label class="col-sm-3 col-form-label form-label">Permissions</label>
-            <div class="col-sm-9">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="manageAdmins" id="manageAdmins">
-                <label class="form-check-label" for="manageAdmins">
-                  Manage Admins
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="manageCompanyProfile" id="manageCompanyProfile">
-                <label class="form-check-label" for="manageCompanyProfile">
-                  Manage Company Profile
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="managePeople" id="managePeople">
-                <label class="form-check-label" for="managePeople">
-                  Manage People
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="manageMilestones" id="manageMilestones">
-                <label class="form-check-label" for="manageMilestones">
-                  Manage Milestones
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="manageInvestors" id="manageInvestors">
-                <label class="form-check-label" for="manageInvestors">
-                  Manage Investors
-                </label>
-              </div>
-            </div>
-          </div>
-          <!-- End Permissions Form -->
-
-          <!-- Actions -->
-          <div class="d-flex justify-content-end">
-            <div class="d-flex gap-3">
-              <button type="button" class="btn btn-white" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-              <button type="submit" class="btn btn-primary">Add Admin</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <!-- End Body -->
-    </div>
-  </div>
+          <!-- End Footer -->
+    </di
+    
+    
+    v>
 </div>
-<!-- End Add Admin Modal -->
+
+        <!-- Multi-Step Create Deal Modal -->
+<!-- Create Deal Modal -->
+<div class="modal fade" id="createDealModal" tabindex="-1" aria-labelledby="createDealModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Create New Deal</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Progress Bar -->
+                <div class="step-indicator">
+                    <div class="step active" id="step1"></div>
+                    <div class="line"></div>
+                    <div class="step" id="step2"></div>
+                    <div class="line"></div>
+                    <div class="step" id="step3"></div>
+                </div>
+                <form id="createDealForm">
+                    <div class=" step-1">
+                        <h5 class="mb-4">Deal Information</h5>
+
+                        <!-- Deal Name -->
+                        <div class="mb-3">
+                            <label for="dealName" class="form-label">Deal Name</label>
+                            <input type="text" class="form-control" id="dealName" placeholder="Enter deal name">
+                            <small class="text-danger d-none" id="dealNameError">Deal name is required.</small>
+                        </div>
+
+                        <!-- Deal Type -->
+                        <div class="mb-3">
+                            <label for="dealType" class="form-label">Deal Type</label>
+                            <select class="form-control" id="dealType">
+                                <option value="" disabled selected>Select Deal Type</option>
+                                <option value="Equity Investment">Equity Investment</option>
+                                <option value="Convertible Note">Convertible Note</option>
+                                <option value="Venture Debt">Venture Debt</option>
+                                <option value="SAFE">SAFE (Future Equity)</option>
+                            </select>
+                            <small class="text-danger d-none" id="dealTypeError">Deal type is required.</small>
+                        </div>
+
+                        <!-- Deal Description -->
+                        <div class="mb-3">
+                            <label for="dealDescription" class="form-label">Deal Description</label>
+                            <textarea class="form-control" id="dealDescription" rows="3" placeholder="Enter deal description"></textarea>
+                            <small class="text-danger d-none" id="dealDescriptionError">Deal description is required.</small>
+                        </div>
+
+                        <!-- Proposal Date -->
+                        <div class="mb-3">
+                            <label for="proposalDate" class="form-label">Date of Proposal</label>
+                            <input type="date" class="form-control" id="proposalDate">
+                            <small class="text-danger d-none" id="proposalDateError">Proposal date is required.</small>
+                        </div>
+
+                        <!-- Deal Closure Date -->
+                        <div class="mb-3">
+                            <label for="dealClosure" class="form-label">Deal Closure Date</label>
+                            <input type="date" class="form-control" id="dealClosure">
+                            <small class="text-danger d-none" id="dealClosureError">Deal closure date is required.</small>
+                        </div>
+
+                        <!-- Funding Stage -->
+                        <div class="mb-3">
+                            <label for="fundingStage" class="form-label">Funding Stage</label>
+                            <select class="form-control" id="fundingStage">
+                                <option value="" disabled selected>Select Funding Stage</option>
+                                <option value="Pre-Seed">Pre-Seed</option>
+                                <option value="Seed">Seed</option>
+                                <option value="Series A">Series A</option>
+                                <option value="Series B">Series B</option>
+                                <option value="Series C">Series C</option>
+                                <option value="Growth">Growth</option>
+                                <option value="Private Equity">Private Equity</option>
+                                <option value="IPO">IPO</option>
+                            </select>
+                            <small class="text-danger d-none" id="fundingStageError">Funding stage is required.</small>
+                        </div>
+
+                        <!-- Investment Amount -->
+                        <div class="mb-3">
+                            <label for="investmentAmount" class="form-label">Investment Amount</label>
+                            <input type="number" class="form-control" id="investmentAmount" placeholder="Enter amount">
+                            <small class="text-danger d-none" id="investmentAmountError">Investment amount is required.</small>
+                        </div>
+
+                        <!-- Equity Stake -->
+                        <div class="mb-3">
+                            <label for="equityStake" class="form-label">Equity Stake (%)</label>
+                            <input type="number" class="form-control" id="equityStake" placeholder="Enter percentage">
+                            <small class="text-danger d-none" id="equityStakeError">Equity stake is required.</small>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary" id="nextStep1">Next</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Goal Entry -->
+                    <div class="step-2 d-none">
+                        <h5 class="mb-3">Goal Information</h5>
+
+                        <!-- Goal Title -->
+                        <div class="mb-3">
+                            <label for="goalTitle" class="form-label">Goal</label>
+                            <input type="text" class="form-control" id="goalTitle" placeholder="Enter goal name">
+                            <small class="text-danger d-none" id="goalTitleError">Goal name is required.</small>
+                        </div>
+
+                        <!-- Goal Description -->
+                        <div class="mb-3">
+                            <label for="goalDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="goalDescription" rows="3" placeholder="Enter goal description"></textarea>
+                            <small class="text-danger d-none" id="goalDescriptionError">Description is required.</small>
+                        </div>
+
+                        <!-- Due Date -->
+                        <div class="mb-3">
+                            <label for="dueDate" class="form-label">Due Date</label>
+                            <input type="date" class="form-control" id="dueDate">
+                            <small class="text-danger d-none" id="dueDateError">Due date is required.</small>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" id="prevStep2">Back</button>
+                            <button type="button" class="btn btn-primary" id="nextStep2">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Review & Submit -->
+                    <div class="step-3 d-none">
+                        <h5 class="mb-3">Review & Confirm</h5>
+                        <p class="text-muted">Please review the details before submitting.</p>
+
+                        <div class="border p-3 mb-3 rounded">
+                            <h6>Deal Information</h6>
+                            <p><strong>Deal Name:</strong> <span id="reviewDealName"></span></p>
+                            <p><strong>Deal Type:</strong> <span id="reviewDealType"></span></p>
+                            <p><strong>Deal Description:</strong> <span id="reviewDealDescription"></span></p>
+                            <p><strong>Proposal Date:</strong> <span id="reviewProposalDate"></span></p>
+                            <p><strong>Deal Closure Date:</strong> <span id="reviewDealClosure"></span></p>
+                            <p><strong>Funding Stage:</strong> <span id="reviewFundingStage"></span></p>
+                            <p><strong>Investment Amount:</strong> <span id="reviewInvestmentAmount"></span></p>
+                            <p><strong>Equity Stake:</strong> <span id="reviewEquityStake"></span>%</p>
+                        </div>
+
+                        <div class="border p-3 rounded">
+                            <h6>Goal Information</h6>
+                            <p><strong>Goal Name:</strong> <span id="reviewGoalTitle"></span></p>
+                            <p><strong>Description:</strong> <span id="reviewGoalDescription"></span></p>
+                            <p><strong>Due Date:</strong> <span id="reviewDueDate"></span></p>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-secondary" id="prevStep3">Back</button>
+                            <button type="submit" class="btn btn-success">Create Deal</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Edit Deal Modal -->
+    <div class="modal fade" id="editDealModal" tabindex="-1" aria-labelledby="editDealModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="editDealModalLabel">Edit Deal</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editDealForm">
+                        <!-- Deal Name -->
+                        <div class="mb-3">
+                            <label for="editDealName" class="form-label">Deal Name</label>
+                            <input type="text" class="form-control" id="editDealName">
+                        </div>
+
+                        <!-- Deal Type (Dropdown) -->
+                        <div class="mb-3">
+                            <label for="editDealType" class="form-label">Deal Type</label>
+                            <select class="form-control" id="editDealType">
+                                <option value="" disabled>Select Deal Type</option>
+                                <option value="Equity Investment">Equity Investment</option>
+                                <option value="Convertible Note">Convertible Note</option>
+                                <option value="Venture Debt">Venture Debt</option>
+                                <option value="SAFE">SAFE (Future Equity)</option>
+                            </select>
+                        </div>
+
+                        <!-- Deal Description -->
+                        <div class="mb-3">
+                            <label for="editDealDescription" class="form-label">Deal Description</label>
+                            <textarea class="form-control" id="editDealDescription" rows="3"></textarea>
+                        </div>
+
+                        <!-- Proposal Date -->
+                        <div class="mb-3">
+                            <label for="editProposalDate" class="form-label">Proposal Date</label>
+                            <input type="date" class="form-control" id="editProposalDate">
+                        </div>
+
+                        <!-- Created Date -->
+                        <div class="mb-3">
+                            <label for="editCreatedDate" class="form-label">Created Date</label>
+                            <input type="date" class="form-control" id="editCreatedDate" readonly>
+                        </div>
+
+                        <!-- Deal Closure Date -->
+                        <div class="mb-3">
+                            <label for="editDealClosure" class="form-label">Deal Closure Date</label>
+                            <input type="date" class="form-control" id="editDealClosure">
+                        </div>
+
+                        <!-- Funding Stage -->
+                        <div class="mb-3">
+                            <label for="editFundingStage" class="form-label">Funding Stage</label>
+                            <select class="form-control" id="editFundingStage">
+                                <option value="" disabled>Select Funding Stage</option>
+                                <option value="Pre-Seed">Pre-Seed</option>
+                                <option value="Seed">Seed</option>
+                                <option value="Series A">Series A</option>
+                                <option value="Series B">Series B</option>
+                                <option value="Series C">Series C</option>
+                                <option value="Growth">Growth</option>
+                                <option value="Private Equity">Private Equity</option>
+                                <option value="IPO">IPO</option>
+                            </select>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        
+
+        <!-- Delete Deal Modal -->
+        <div class="modal fade" id="deleteDealModal" tabindex="-1" aria-labelledby="deleteDealModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="deleteDealModalLabel">Confirm Deletion</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete <strong id="dealToDeleteName"></strong>?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="confirmDeleteDeal">Yes, Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    let currentStep = 1;
+    const totalSteps = 3;
+
+    const updateProgress = () => {
+        const progress = (currentStep / totalSteps) * 100;
+        document.querySelector("#dealProgressBar").style.width = `${progress}%`;
+        document.querySelector("#dealProgressBar").textContent = `Step ${currentStep} of ${totalSteps}`;
+    };
+
+    // Function to validate input fields
+    const validateStep = (step) => {
+        let isValid = true;
+
+        if (step === 1) {
+            isValid &= validateField("#dealName", "#dealNameError");
+            isValid &= validateField("#dealDescription", "#dealDescriptionError"); // Validate Deal Description
+            isValid &= validateField("#dealType", "#dealTypeError");
+            isValid &= validateField("#proposalDate", "#proposalDateError");
+            isValid &= validateField("#dealClosure", "#dealClosureError");
+            isValid &= validateField("#fundingStage", "#fundingStageError");
+            isValid &= validateField("#investmentAmount", "#investmentAmountError");
+            isValid &= validateField("#equityStake", "#equityStakeError");
+        }
+
+        if (step === 2) {
+            isValid &= validateField("#goalTitle", "#goalTitleError");
+            isValid &= validateField("#goalDescription", "#goalDescriptionError");
+            isValid &= validateField("#dueDate", "#dueDateError");
+        }
+
+        return isValid;
+    };
+
+    // Function to check if a field is empty and show error
+    const validateField = (inputSelector, errorSelector) => {
+        const input = document.querySelector(inputSelector);
+        const error = document.querySelector(errorSelector);
+        if (input.value.trim() === "") {
+            error.classList.remove("d-none");
+            return false;
+        } else {
+            error.classList.add("d-none");
+            return true;
+        }
+    };
+
+    // Step 1 -> Step 2
+    document.querySelector("#nextStep1").addEventListener("click", () => {
+        if (!validateStep(1)) return;
+
+        document.querySelector(".step-1").classList.add("d-none");
+        document.querySelector(".step-2").classList.remove("d-none");
+        currentStep++;
+        updateProgress();
+    });
+
+    // Step 2 -> Step 3
+    document.querySelector("#nextStep2").addEventListener("click", () => {
+        if (!validateStep(2)) return;
+
+        document.querySelector(".step-2").classList.add("d-none");
+        document.querySelector(".step-3").classList.remove("d-none");
+
+        // Populate Review Section
+        document.querySelector("#reviewDealName").textContent = document.querySelector("#dealName").value;
+        document.querySelector("#reviewDealDescription").textContent = document.querySelector("#dealDescription").value; // Review Deal Description
+        document.querySelector("#reviewDealType").textContent = document.querySelector("#dealType").value;
+        document.querySelector("#reviewProposalDate").textContent = document.querySelector("#proposalDate").value;
+        document.querySelector("#reviewDealClosure").textContent = document.querySelector("#dealClosure").value;
+        document.querySelector("#reviewFundingStage").textContent = document.querySelector("#fundingStage").value;
+        document.querySelector("#reviewInvestmentAmount").textContent = document.querySelector("#investmentAmount").value;
+        document.querySelector("#reviewEquityStake").textContent = document.querySelector("#equityStake").value + "%";
+
+        document.querySelector("#reviewGoalTitle").textContent = document.querySelector("#goalTitle").value;
+        document.querySelector("#reviewGoalDescription").textContent = document.querySelector("#goalDescription").value;
+        document.querySelector("#reviewDueDate").textContent = document.querySelector("#dueDate").value;
+
+        currentStep++;
+        updateProgress();
+    });
+
+    // Back to Step 1
+    document.querySelector("#prevStep2").addEventListener("click", () => {
+        document.querySelector(".step-2").classList.add("d-none");
+        document.querySelector(".step-1").classList.remove("d-none");
+        currentStep--;
+        updateProgress();
+    });
+
+    // Back to Step 2
+    document.querySelector("#prevStep3").addEventListener("click", () => {
+        document.querySelector(".step-3").classList.add("d-none");
+        document.querySelector(".step-2").classList.remove("d-none");
+        currentStep--;
+        updateProgress();
+    });
+
+    // Submit Form (Final Step)
+    document.querySelector("#createDealForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        alert("Deal Created Successfully!");
+        document.querySelector("#createDealModal").classList.remove("show");
+        location.reload();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const dealsTableBody = document.querySelector("#datatable tbody");
+    const editDealModal = document.getElementById("editDealModal");
+
+    // Mock Deals Data (Replace with API Fetch in real implementation)
+    const deals = [
+        { id: 1, name: "Tech Innovators", type: "Equity Investment", description: "Leading in AI and Robotics", proposalDate: "2024-02-15", createdDate: "2024-01-30", closureDate: "2024-04-10", fundingStage: "Seed Stage", investmentAmount: "$1,500,000", equityStake: "15%" },
+        { id: 2, name: "Green Energy Corp", type: "Convertible Note", description: "Renewable energy investments", proposalDate: "2024-03-10", createdDate: "2024-02-20", closureDate: "2024-05-05", fundingStage: "Series A", investmentAmount: "$3,200,000", equityStake: "10%" }
+    ];
+
+    // Function to populate the deals table dynamically
+    const populateDealsTable = () => {
+        dealsTableBody.innerHTML = "";
+        deals.forEach(deal => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td class="table-column-pe-0">
+                    <div class="form-check">
+                        <input class="form-check-input row-checkbox" type="checkbox">
+                        <label class="form-check-label"></label>
+                    </div>
+                </td>
+                <td>${deal.name}</td>
+                <td>${deal.type}</td>
+                <td>${deal.description}</td>
+                <td>${deal.proposalDate}</td>
+                <td>${deal.createdDate}</td>
+                <td>${deal.closureDate}</td>
+                <td>${deal.fundingStage}</td>
+                <td>${deal.investmentAmount}</td>
+                <td>${deal.equityStake}</td>
+                <td>
+                    <button class="btn btn-md btn-sm edit-deal" data-bs-toggle="modal" data-bs-target="#editDealModal"
+                        data-id="${deal.id}" data-deal-name="${deal.name}" data-deal-type="${deal.type}"
+                        data-deal-description="${deal.description}" data-proposal-date="${deal.proposalDate}"
+                        data-created-date="${deal.createdDate}" data-deal-closure="${deal.closureDate}"
+                        data-funding-stage="${deal.fundingStage}" data-investment-amount="${deal.investmentAmount}"
+                        data-equity-stake="${deal.equityStake}">
+                        <i class="bi-pencil-fill"></i>
+                    </button>
+                    <button class="btn btn-md btn-sm text-danger delete-deal" data-bs-toggle="modal" data-bs-target="#deleteDealModal" data-id="${deal.id}">
+                        <i class="bi-trash"></i>
+                    </button>
+                </td>
+            `;
+            dealsTableBody.appendChild(row);
+        });
+
+        // Attach event listeners after populating the table
+        attachEditListeners();
+        attachDeleteListeners();
+    };
+
+    // Function to populate the Edit Modal when the edit button is clicked
+    const attachEditListeners = () => {
+        document.querySelectorAll(".edit-deal").forEach(button => {
+            button.addEventListener("click", function () {
+                const dealId = parseInt(this.getAttribute("data-id"));
+                const deal = deals.find(d => d.id === dealId);
+
+                if (deal) {
+                    document.getElementById("editDealName").value = deal.name;
+                    document.getElementById("editDealDescription").value = deal.description;
+                    document.getElementById("editProposalDate").value = deal.proposalDate;
+                    document.getElementById("editCreatedDate").value = deal.createdDate;
+                    document.getElementById("editDealClosure").value = deal.closureDate;
+                    document.getElementById("editFundingStage").value = deal.fundingStage;
+                    document.getElementById("editInvestmentAmount").value = deal.investmentAmount;
+                    document.getElementById("editEquityStake").value = deal.equityStake;
+
+                    // Set dropdown selection
+                    setDropdownValue(document.getElementById("editDealType"), deal.type);
+                }
+            });
+        });
+    };
+
+    // Function to attach delete listeners
+    const attachDeleteListeners = () => {
+        document.querySelectorAll(".delete-deal").forEach(button => {
+            button.addEventListener("click", function () {
+                const dealId = this.getAttribute("data-id");
+                const deal = deals.find(d => d.id == dealId);
+
+                if (deal) {
+                    document.getElementById("dealToDeleteName").innerText = deal.name;
+                }
+            });
+        });
+    };
+
+    // Function to set the selected value in a dropdown
+    function setDropdownValue(dropdown, value) {
+        if (dropdown) {
+            for (let option of dropdown.options) {
+                if (option.value === value) {
+                    dropdown.value = value;
+                    return;
+                }
+            }
+        }
+    }
+
+    // Populate deals table on page load
+    populateDealsTable();
+});
+
+
+
+
+//progress bar
+document.addEventListener("DOMContentLoaded", () => {
+    let currentStep = 1;
+    const totalSteps = 3;
+
+    const updateProgress = () => {
+        document.querySelectorAll(".step").forEach((step, index) => {
+            if (index + 1 < currentStep) {
+                step.classList.add("completed");
+            } else if (index + 1 === currentStep) {
+                step.classList.add("active");
+            } else {
+                step.classList.remove("active", "completed");
+            }
+        });
+
+        document.querySelectorAll(".line").forEach((line, index) => {
+            if (index + 1 < currentStep) {
+                line.classList.add("completed");
+            } else {
+                line.classList.remove("completed");
+            }
+        });
+    };
+
+    const validateStep = (step) => {
+        let isValid = true;
+        if (step === 1) {
+            isValid &= validateField("#dealName", "#dealNameError");
+            isValid &= validateField("#dealDescription", "#dealDescriptionError");
+            isValid &= validateField("#dealType", "#dealTypeError");
+            isValid &= validateField("#proposalDate", "#proposalDateError");
+            isValid &= validateField("#dealClosure", "#dealClosureError");
+            isValid &= validateField("#fundingStage", "#fundingStageError");
+            isValid &= validateField("#investmentAmount", "#investmentAmountError");
+            isValid &= validateField("#equityStake", "#equityStakeError");
+        }
+        if (step === 2) {
+            isValid &= validateField("#goalTitle", "#goalTitleError");
+            isValid &= validateField("#goalDescription", "#goalDescriptionError");
+            isValid &= validateField("#dueDate", "#dueDateError");
+        }
+
+        return isValid;
+    };
+
+    const validateField = (inputSelector, errorSelector) => {
+        const input = document.querySelector(inputSelector);
+        const error = document.querySelector(errorSelector);
+        if (input.value.trim() === "") {
+            error.classList.remove("d-none");
+            return false;
+        } else {
+            error.classList.add("d-none");
+            return true;
+        }
+    };
+
+    // Next Step
+    document.querySelector("#nextStep1").addEventListener("click", () => {
+        if (validateStep(1)) {
+            document.querySelector(".step-1").classList.add("d-none");
+            document.querySelector(".step-2").classList.remove("d-none");
+            currentStep++;
+            updateProgress();
+        }
+    });
+
+    document.querySelector("#nextStep2").addEventListener("click", () => {
+        if (validateStep(2)) {
+            document.querySelector(".step-2").classList.add("d-none");
+            document.querySelector(".step-3").classList.remove("d-none");
+            currentStep++;
+            updateProgress();
+        }
+    });
+
+    // Back Buttons
+    document.querySelector("#prevStep2").addEventListener("click", () => {
+        document.querySelector(".step-2").classList.add("d-none");
+        document.querySelector(".step-1").classList.remove("d-none");
+        currentStep--;
+        updateProgress();
+    });
+
+    document.querySelector("#prevStep3").addEventListener("click", () => {
+        document.querySelector(".step-3").classList.add("d-none");
+        document.querySelector(".step-2").classList.remove("d-none");
+        currentStep--;
+        updateProgress();
+    });
+
+    // Form Submission
+    document.querySelector("#createDealForm").addEventListener("submit", (event) => {
+        if (!validateStep(3)) {
+            event.preventDefault();
+            return;
+        }
+        alert("Deal Created Successfully!");
+        document.querySelector("#createDealModal").classList.remove("show");
+        location.reload();
+    });
+
+});
+
+
+
+
+
+</script>
+
+    
+    
+
+
 
 
   <!-- ========== END SECONDARY CONTENTS ========== -->
@@ -2269,6 +1837,25 @@
       })()
     </script>
 
+
+
+<!-- Tooltip Activation Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    var tooltip = new bootstrap.Tooltip(tooltipTriggerEl);
+
+    // Hide tooltip when button is clicked
+    tooltipTriggerEl.addEventListener("click", function () {
+      tooltip.hide();
+    });
+
+    return tooltip;
+  });
+});
+
+</script>
   <!-- End Style Switcher JS -->
 </body>
 </html>
