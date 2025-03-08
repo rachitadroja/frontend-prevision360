@@ -943,56 +943,63 @@
           </div>
         
 
-          <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
-            <!-- Datatable Info -->
-            <div id="datatableCounterInfo" style="display: none;">
-              <div class="d-flex align-items-center">
-                <span class="fs-5 me-3">
-                  <span id="datatableCounter">0</span>
-                  Selected
-                </span>
-                <a class="btn btn-outline-danger btn-sm" href="javascript:;">
-                  <i class="bi-trash"></i> Delete
-                </a>
-              </div>
-            </div>
-            <!-- End Datatable Info -->
-
+      <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
+        <!-- Datatable Info -->
+        <div id="datatableCounterInfo" style="display: none;">
+          <div class="d-flex align-items-center">
+            <span class="fs-5 me-3">
+              <span id="datatableCounter">0</span>
+              Selected
+            </span>
+            <a class="btn btn-outline-danger btn-sm" href="javascript:;">
+              <i class="bi-trash"></i> Delete
+            </a>
           </div>
         </div>
-        <!-- End Header -->
-<!-- Table -->
-<div class="table-responsive datatable-custom position-relative">
-  <div id="deleteToast" class="toast align-items-center text-bg-danger border-0 position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-        <div class="toast-body">
-            Milestone deleted successfully.
-        </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <!-- End Datatable Info -->
+
+      </div>
     </div>
-</div>
+    <!-- End Header -->
+    <!-- Table -->
+    <div class="table-responsive datatable-custom position-relative">
+      <div id="deleteToast" class="toast align-items-center text-bg-danger border-0 position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Milestone deleted successfully.
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
 
-  <table id="milestoneTable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-    <thead class="thead-light">
-      <tr>
-        <th style="color: black;">Goals</th>
-        <th style="color: black;">Description</th>
-        <th style="color: black;">Deals</th> <!-- This will now show linked deals dynamically -->
-        <th style="color: black;">Due Date</th>
-        <th style="color: black;">Completion</th>
-        <th style="color: black;">Creation</th>
-        <th style="color: black;">Modified</th>
-        <th style="color: black;">Status</th>
-        <th style="color: black;">Actions</th>
-      </tr>
-    </thead>
+    <div class="table-responsive datatable-custom position-relative"></div>
+        <table id="milestoneTable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table" data-hs-datatables-options='{ 
+          "order": [[7, "asc"]],
+          "info": {"totalQty": "#datatableWithPaginationInfoTotalQty"},
+          "search": "#datatableSearch",
+          "entries": "#datatableEntries",
+          "pageLength": 15,
+          "pagination": "datatablePagination"}'
+        >
+        <thead class="thead-light">
+          <tr>
+            <th style="color: black;">Goals</th>
+            <th style="color: black;">Description</th>
+            <th style="color: black;">Deals</th> <!-- This will now show linked deals dynamically -->
+            <th style="color: black;">Due Date</th>
+            <th style="color: black;">Completion</th>
+            <th style="color: black;">Creation</th>
+            <th style="color: black;">Modified</th>
+            <th style="color: black;">Status</th>
+            <th style="color: black;">Actions</th>
+          </tr>
+        </thead>
 
-    <tbody id="milestoneTableBody">
-      <!-- Dynamic content will be inserted here -->
-    </tbody>
-  </table>
-</div>
-
+        <tbody id="milestoneTableBody">
+          <!-- Dynamic content will be inserted here -->
+        </tbody>
+      </table>
+    </div>
 <!-- Table End -->
 
 
@@ -1135,77 +1142,64 @@
 <!-- End Edit Milestone Modal -->
 
 <!-- Add Milestone Modal -->
+<!-- Add Milestone Modal -->
 <div class="modal fade" id="addMilestoneModal" tabindex="-1" aria-labelledby="addMilestoneModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title" id="addMilestoneModalLabel">Add New Goal</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title" id="addMilestoneModalLabel">Add New Goal</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!-- Body -->
+          <div class="modal-body">
+              <form id="addMilestoneForm">
+                  <!-- Goal Title -->
+                  <div class="mb-3">
+                      <label for="milestoneTitle" class="form-label">Goal</label>
+                      <input type="text" class="form-control" id="milestoneTitle" placeholder="Enter goal">
+                      <small class="text-danger d-none" id="milestoneTitleError">Goal title is required.</small>
+                  </div>
+
+                  <!-- Description -->
+                  <div class="mb-3">
+                      <label for="milestoneDescription" class="form-label">Description</label>
+                      <textarea class="form-control" id="milestoneDescription" rows="3" placeholder="Enter description"></textarea>
+                      <small class="text-danger d-none" id="milestoneDescriptionError">Description is required.</small>
+                  </div>
+
+                  <!-- Due Date -->
+                  <div class="mb-3">
+                      <label for="dueDate" class="form-label">Due Date</label>
+                      <input type="date" class="form-control" id="dueDate">
+                      <small class="text-danger d-none" id="dueDateError">Due date cannot be today or in the past.</small>
+                  </div>
+
+                  <!-- Deals Dropdown -->
+                  <div class="mb-3">
+                      <label for="milestoneDeals" class="form-label">Deals</label>
+                      <select class="form-control" id="milestoneDeals">
+                          <option value="" disabled selected>Select a deal</option>
+                      </select>
+                      <small class="text-danger d-none" id="milestoneDealsError">Please select a deal.</small>
+                  </div>
+
+                  <!-- Actions -->
+                  <div class="d-flex justify-content-end">
+                      <div class="d-flex gap-3">
+                          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-primary">Add Goal</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <!-- End Body -->
       </div>
-
-      <!-- Body -->
-      <div class="modal-body">
-        <form>
-          <!-- Milestone Title -->
-          <div class="row mb-4">
-            <label for="milestoneTitle" class="col-sm-3 col-form-label form-label">Goal</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="milestoneTitle" name="milestoneTitle" placeholder="Enter goal" required>
-            </div>
-          </div>
-
-          <!-- Milestone Description -->
-          <div class="row mb-4">
-            <label for="milestoneDescription" class="col-sm-3 col-form-label form-label">Description</label>
-            <div class="col-sm-9">
-              <textarea class="form-control" id="milestoneDescription" name="milestoneDescription" rows="3" placeholder="Enter description" required></textarea>
-            </div>
-          </div>
-
-          <!-- Due Date -->
-          <div class="row mb-4">
-            <label for="dueDate" class="col-sm-3 col-form-label form-label">Due Date</label>
-            <div class="col-sm-9">
-              <input type="date" class="form-control" id="dueDate" name="dueDate" required>
-            </div>
-          </div>
-
-          <!-- Deals Dropdown -->
-          <div class="row mb-4">
-            <label for="milestoneDeals" class="col-sm-3 col-form-label form-label">Deals</label>
-            <div class="col-sm-9">
-              <select class="form-control" id="milestoneDeals" name="milestoneDeals">
-                <option value="" disabled selected>Select deals</option>
-                <!-- Deals will be dynamically added here -->
-              </select>
-            </div>
-          </div>
-
-          <!-- Status Selection -->
-          <div class="mb-3">
-            <label for="milestoneStatus" class="form-label">Status</label>
-            <select class="form-control" id="milestoneStatus">
-              <option value="draft">Draft</option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-          </div>
-
-          <!-- Actions -->
-          <div class="d-flex justify-content-end">
-            <div class="d-flex gap-3">
-              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary">Add Goal</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <!-- End Body -->
-    </div>
   </div>
 </div>
+
 <!-- End Add Milestone Modal -->
- <!-- Delete Confirmation Modal -->
+<!-- Delete Confirmation Modal -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -1437,14 +1431,18 @@
 
 <!-- Initialize DataTables -->
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     $('#milestoneTable').DataTable({
-      "paging": false,  // Disable pagination
-      "info": false,    // Hide info text
-      "order": [],      // Disable initial ordering
-      "columnDefs": [{ "targets": [7], "orderable": false }] // Disable sorting for the Actions column
+        "paging": false,  // Disable pagination
+        "info": false,    // Hide   text
+        // "order": [[0, "asc"]],  // Default sorting by "Goals"
+        "order": [],  // Default sorting by "Goals"
+        "columnDefs": [
+            { "targets": [7,8], "orderable": false }  // Disable sorting for "Actions" column
+        ]
     });
-  });
+});
+
 </script>
   <!-- End Style Switcher JS -->
 </body>
