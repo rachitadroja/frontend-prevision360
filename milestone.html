@@ -923,18 +923,25 @@
       <div class="card">
         <!-- Header -->
         <div class="card-header card-header-content-md-between">
-          <div class="mb-2 mb-md-0">
-            <form>
-              <!-- Search -->
-              <div class="input-group input-group-merge input-group-flush">
-                <div class="input-group-prepend input-group-text">
-                  <i class="bi-search"></i>
-                </div>
-                <input id="datatableSearch" type="search" class="form-control" placeholder="Search goal" aria-label="Search users">
-              </div>
-              <!-- End Search -->
-            </form>
+          <div class="d-flex align-items-center gap-2">
+            <!-- Search Input -->
+            <input type="text" id="searchGoal" class="form-control" placeholder="Search goal">
+        
+            <!-- Filter Icon & Dropdown -->
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-funnel"></i> Filter
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                    <li><a class="dropdown-item filter-status" data-status="all" href="#">All</a></li>
+                    <li><a class="dropdown-item filter-status" data-status="draft" href="#">Draft</a></li>
+                    <li><a class="dropdown-item filter-status" data-status="active" href="#">Active</a></li>
+                    <li><a class="dropdown-item filter-status" data-status="inactive" href="#">Inactive</a></li>
+                    <li><a class="dropdown-item filter-status" data-status="completed" href="#">Completed</a></li>
+                </ul>
+            </div>
           </div>
+        
 
           <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
             <!-- Datatable Info -->
@@ -1036,7 +1043,6 @@
 
     <!-- Footer -->
 
-    <!-- End Col -->
 
     <!-- End Footer -->
   </main>
