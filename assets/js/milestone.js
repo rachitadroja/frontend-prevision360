@@ -309,6 +309,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("editMilestoneTitle").value = milestone.title;
                 document.getElementById("editMilestoneDescription").value = milestone.description;
                 document.getElementById("editDueDate").value = milestone.dueDate;
+                document.getElementById("editCreationDate").value = milestone.creationDate;
                 document.getElementById("editModifiedDate").value = milestone.modifiedDate;
                 document.getElementById("editCompletionDate").value = milestone.completionDate;
                 document.getElementById("markCompleted").checked = milestone.is_completed;
