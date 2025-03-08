@@ -159,6 +159,39 @@ body {
     background: none;
 }
 
+/*-------------milestone page------------------------------------------*/
+.badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.badge-outline-danger {
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    background: transparent;
+}
+
+.badge-outline-warning {
+    color: #ffc107;
+    border: 1px solid #ffc107;
+    background: transparent;
+}
+
+.badge-outline-primary {
+    color: #007bff;
+    border: 1px solid #007bff;
+    background: transparent;
+}
+
+.badge-success {
+    background: #28a745;
+    color: white;
+    border: none;
+}
+
+/*-------------milestone page------------------------------------------*/
 
 /*==============================================================================================*/
 
