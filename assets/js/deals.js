@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmDeleteDealBtn = document.getElementById("confirmDeleteDeal");
 
     let deals = [
-        { id: 1, name: "Tech Innovators", type: "Equity Investment", description: "Leading in AI and Robotics", proposalDate: "2024-02-15", createdDate: "2024-01-30", closureDate: "2024-04-10", fundingStage: "Seed Stage", investmentAmount: "$1,500,000", equityStake: "15%", externalResource: "https://www.youtube.com/", status: "active", is_closed: false },
-        { id: 2, name: "Green Energy Corp", type: "Convertible Note", description: "Renewable energy investments", proposalDate: "2024-03-10", createdDate: "2024-02-20", closureDate: "2024-05-05", fundingStage: "Series A", investmentAmount: "$3,200,000", equityStake: "10%", externalResource: "https://www.youtube.com/", status: "inactive", is_closed: false },
-        { id: 3, name: "Health Innovations", type: "Venture Debt", description: "Revolutionizing healthcare through technology", proposalDate: "2024-03-25", createdDate: "2024-03-01", closureDate: "2024-06-15", fundingStage: "Pre-Seed", investmentAmount: "$500,000", equityStake: "5%", externalResource: "https://www.youtube.com/", status: "draft", is_closed: false },
+        { id: 1, name: "Tech Innovators", type: "Equity Investment", description: "Leading in AI and Robotics", proposalDate: "2024-02-15", createdDate: "2024-01-30", closureDate: "", fundingStage: "Seed Stage", investmentAmount: "$1,500,000", equityStake: "15%", externalResource: "https://www.youtube.com/", status: "active", is_closed: false },
+        { id: 2, name: "Green Energy Corp", type: "Convertible Note", description: "Renewable energy investments", proposalDate: "2024-03-10", createdDate: "2024-02-20", closureDate: "", fundingStage: "Series A", investmentAmount: "$3,200,000", equityStake: "10%", externalResource: "https://www.youtube.com/", status: "inactive", is_closed: false },
+        { id: 3, name: "Health Innovations", type: "Venture Debt", description: "Revolutionizing healthcare through technology", proposalDate: "2024-03-25", createdDate: "2024-03-01", closureDate: "", fundingStage: "Pre-Seed", investmentAmount: "$500,000", equityStake: "5%", externalResource: "https://www.youtube.com/", status: "draft", is_closed: false },
         { id: 4, name: "EduTech Solutions", type: "Equity Investment", description: "Improving education with technology", proposalDate: "2024-04-05", createdDate: "2024-03-15", closureDate: "2024-07-20", fundingStage: "Series B", investmentAmount: "$2,000,000", equityStake: "8%", externalResource: "https://www.youtube.com/", status: "closed", is_closed: true }
     ];
 
@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
         // Populate the table with sorted deals
         deals.forEach(deal => {
+            const closureText = deal.closureDate ? deal.closureDate : "Pending";
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td><input type="checkbox" class="deal-checkbox form-check-input"></td>
@@ -92,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>${deal.description}</td>
                 <td>${deal.proposalDate}</td>
                 <td>${deal.createdDate}</td>
-                <td>${deal.closureDate}</td>
+                <td>${closureText}</td>
                 <td>${deal.fundingStage}</td>
                 <td>${deal.investmentAmount}</td>
                 <td>${deal.equityStake}</td>
@@ -116,7 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const type = form.querySelector("#dealType");
         const description = form.querySelector("#dealDescription");
         const proposalDate = form.querySelector("#proposalDate");
-        const closureDate = form.querySelector("#dealClosure");
         const fundingStage = form.querySelector("#fundingStage");
         const investmentAmount = form.querySelector("#investmentAmount");
         const equityStake = form.querySelector("#equityStake");
@@ -138,7 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (type.selectedIndex === 0) showError(type, "Deal type is required.");
         if (!description.value.trim()) showError(description, "Description is required.");
         if (!proposalDate.value) showError(proposalDate, "Proposal date is required.");
-        if (!closureDate.value) showError(closureDate, "Closure date is required.");
         if (fundingStage.selectedIndex === 0) showError(fundingStage, "Funding stage is required.");
         if (!investmentAmount.value || isNaN(investmentAmount.value) || Number(investmentAmount.value) <= 0)
             showError(investmentAmount, "Valid investment amount is required.");
@@ -159,7 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 description: document.getElementById("dealDescription").value,
                 proposalDate: document.getElementById("proposalDate").value,
                 createdDate: new Date().toISOString().split('T')[0], // Assume creation date is today
-                closureDate: document.getElementById("dealClosure").value,
                 fundingStage: document.getElementById("fundingStage").value,
                 investmentAmount: document.getElementById("investmentAmount").value,
                 equityStake: document.getElementById("equityStake").value,
@@ -173,6 +171,24 @@ document.addEventListener("DOMContentLoaded", () => {
             showToast("New deal created successfully!");
             bootstrap.Modal.getInstance(document.getElementById("createDealModal")).hide();
             this.reset(); // Reset the form after successful submission
+        }
+    });
+
+    document.getElementById('dealCloseCheckbox').addEventListener('change', function() {
+        const isClosed = this.checked;
+        const closureInput = document.getElementById('editDealClosure');
+        const statusDropdown = document.getElementById('editDealStatus');
+    
+        if (isClosed) {
+            const today = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+            closureInput.value = today; // Set the closure date to today
+            statusDropdown.value = 'closed';
+            statusDropdown.disabled = true;
+            closureInput.disabled = true; // Optionally disable the date field to prevent editing
+        } else {
+            closureInput.value = ''; // Clear the closure date
+            statusDropdown.disabled = false;
+            closureInput.disabled = false; // Enable the date field for editing
         }
     });
     
