@@ -19,86 +19,85 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
      // **Validation & Goal Creation**
-     const addMilestoneForm = document.getElementById("addMilestoneForm");
+    const addMilestoneForm = document.getElementById("addMilestoneForm");
 
-     function validateGoalForm() {
-         let isValid = true;
-         const titleInput = document.getElementById("milestoneTitle");
-         const descriptionInput = document.getElementById("milestoneDescription");
-         const dueDateInput = document.getElementById("dueDate");
-         const dealsDropdown = document.getElementById("milestoneDeals");
- 
-         const titleError = document.getElementById("milestoneTitleError");
-         const descriptionError = document.getElementById("milestoneDescriptionError");
-         const dueDateError = document.getElementById("dueDateError");
-         const dealsError = document.getElementById("milestoneDealsError");
- 
-         // Clear previous errors
-         titleError.classList.add("d-none");
-         descriptionError.classList.add("d-none");
-         dueDateError.classList.add("d-none");
-         dealsError.classList.add("d-none");
- 
-         // Title validation
-         if (titleInput.value.trim() === "") {
-             titleError.classList.remove("d-none");
-             isValid = false;
-         }
- 
-         // Description validation
-         if (descriptionInput.value.trim() === "") {
-             descriptionError.classList.remove("d-none");
-             isValid = false;
-         }
- 
-         // Due Date validation: Cannot be in the past or today
-         const today = new Date();
-         const selectedDate = new Date(dueDateInput.value);
- 
-         today.setHours(0, 0, 0, 0); // Reset time for accurate comparison
- 
-         if (selectedDate <= today) {
-             dueDateError.classList.remove("d-none");
-             isValid = false;
-         }
- 
-         // Deals validation
-         if (dealsDropdown.value === "") {
-             dealsError.classList.remove("d-none");
-             isValid = false;
-         }
- 
-         return isValid;
-     }
- 
-     // Handle Goal Creation
-     addMilestoneForm.addEventListener("submit", function (e) {
-         e.preventDefault();
- 
-         if (validateGoalForm()) {
-             const newGoal = {
-                 id: Math.floor(Math.random() * 1000), // Random ID
-                 title: document.getElementById("milestoneTitle").value,
-                 description: document.getElementById("milestoneDescription").value,
-                 dueDate: document.getElementById("dueDate").value,
-                 creationDate: new Date().toISOString().split("T")[0],
-                 modifiedDate: new Date().toISOString().split("T")[0],
-                 status: "draft",
-                 is_completed: false,
-                 dealId: document.getElementById("milestoneDeals").value
-             };
- 
-             milestones.push(newGoal); // Add goal to list
-             populateMilestones();
-             showToast("Goal created successfully!");
- 
-             let addModal = bootstrap.Modal.getInstance(document.getElementById("addMilestoneModal"));
-             addModal.hide();
- 
-             addMilestoneForm.reset();
-         }
-     });
- 
+    function validateGoalForm() {
+        let isValid = true;
+        const titleInput = document.getElementById("milestoneTitle");
+        const descriptionInput = document.getElementById("milestoneDescription");
+        const dueDateInput = document.getElementById("dueDate");
+        const dealsDropdown = document.getElementById("milestoneDeals");
+
+        const titleError = document.getElementById("milestoneTitleError");
+        const descriptionError = document.getElementById("milestoneDescriptionError");
+        const dueDateError = document.getElementById("dueDateError");
+        const dealsError = document.getElementById("milestoneDealsError");
+
+        // Clear previous errors
+        titleError.classList.add("d-none");
+        descriptionError.classList.add("d-none");
+        dueDateError.classList.add("d-none");
+        dealsError.classList.add("d-none");
+
+        // Title validation
+        if (titleInput.value.trim() === "") {
+            titleError.classList.remove("d-none");
+            isValid = false;
+        }
+
+        // Description validation
+        if (descriptionInput.value.trim() === "") {
+            descriptionError.classList.remove("d-none");
+            isValid = false;
+        }
+
+        // Due Date validation: Cannot be in the past or today
+        const today = new Date();
+        const selectedDate = new Date(dueDateInput.value);
+
+        today.setHours(0, 0, 0, 0); // Reset time for accurate comparison
+
+        if (selectedDate <= today) {
+            dueDateError.classList.remove("d-none");
+            isValid = false;
+        }
+
+        // Deals validation
+        if (dealsDropdown.value === "") {
+            dealsError.classList.remove("d-none");
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    // Handle Goal Creation
+    addMilestoneForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        if (validateGoalForm()) {
+            const newGoal = {
+                id: Math.floor(Math.random() * 1000), // Random ID
+                title: document.getElementById("milestoneTitle").value,
+                description: document.getElementById("milestoneDescription").value,
+                dueDate: document.getElementById("dueDate").value,
+                creationDate: new Date().toISOString().split("T")[0],
+                modifiedDate: new Date().toISOString().split("T")[0],
+                status: "draft",
+                is_completed: false,
+                dealId: document.getElementById("milestoneDeals").value
+            };
+
+            milestones.push(newGoal); // Add goal to list
+            populateMilestones();
+            showToast("Goal created successfully!");
+
+            let addModal = bootstrap.Modal.getInstance(document.getElementById("addMilestoneModal"));
+            addModal.hide();
+
+            addMilestoneForm.reset();
+        }
+    });
 
     // Function to return status badge
     const getStatusBadge = (milestone) => {
@@ -348,14 +347,14 @@ document.getElementById("editMilestoneForm").addEventListener("submit", function
     }
 });
     
-        // Toast Notification
-        function showToast(message) {
-            const toastEl = document.createElement("div");
-            toastEl.className = "toast align-items-center text-bg-success border-0 position-fixed bottom-0 end-0 m-3 show";
-            toastEl.innerHTML = `<div class="d-flex"><div class="toast-body">${message}</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>`;
-            document.body.appendChild(toastEl);
-            setTimeout(() => toastEl.remove(), 3000);
-        }
+    // Toast Notification
+    function showToast(message) {
+        const toastEl = document.createElement("div");
+        toastEl.className = "toast align-items-center text-bg-success border-0 position-fixed bottom-0 end-0 m-3 show";
+        toastEl.innerHTML = `<div class="d-flex"><div class="toast-body">${message}</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>`;
+        document.body.appendChild(toastEl);
+        setTimeout(() => toastEl.remove(), 3000);
+    }
 
 
     // Populate milestones on page load

@@ -944,8 +944,8 @@
                 <!-- Table -->
                 <div class="table-responsive datatable-custom position-relative">
                     <table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table" data-hs-datatables-options='{
-                        "columnDefs": [{"targets": [0, 10], "orderable": false}],
-                        "order": [[1, "asc"]],
+                        "columnDefs": [{"targets": [0, 11, 12], "orderable": false}],
+                        "order": [],
                         "info": {"totalQty": "#datatableWithPaginationInfoTotalQty"},
                         "search": "#datatableSearch",
                         "entries": "#datatableEntries",
@@ -970,6 +970,7 @@
                                 <th style="color: black;">Total Investment Amount</th>
                                 <th style="color: black;">%</th>
                                 <th style="color: black;">External Resource</th>
+                                <th style="color: black;">Status</th>
                                 <th style="color: black;">Action</th>
                             </tr>
                         </thead>
@@ -1029,177 +1030,120 @@
 
         <!-- Multi-Step Create Deal Modal -->
 <!-- Create Deal Modal -->
+<!-- Create Deal Modal -->
 <div class="modal fade" id="createDealModal" tabindex="-1" aria-labelledby="createDealModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title">Create New Deal</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title">Create New Deal</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
 
-            <div class="modal-body">
-                <!-- Progress Bar -->
-                <div class="step-indicator">
-                    <div class="step active" id="step1"></div>
-                    <div class="line"></div>
-                    <div class="step" id="step2"></div>
-                    <div class="line"></div>
-                    <div class="step" id="step3"></div>
-                </div>
-                <form id="createDealForm">
-                    <div class=" step-1">
-                        <h5 class="mb-4">Deal Information</h5>
+          <div class="modal-body">
+              <form id="createDealForm">
+                  <h5 class="mb-4">Deal Information</h5>
 
-                        <!-- Deal Name -->
-                        <div class="mb-3">
-                            <label for="dealName" class="form-label">Deal Name</label>
-                            <input type="text" class="form-control" id="dealName" placeholder="Enter deal name">
-                            <small class="text-danger d-none" id="dealNameError">Deal name is required.</small>
-                        </div>
+                  <!-- Deal Name -->
+                  <div class="mb-3">
+                      <label for="dealName" class="form-label">Deal Name</label>
+                      <input type="text" class="form-control" id="dealName" placeholder="Enter deal name">
+                      <small class="text-danger d-none" id="dealNameError">Deal name is required.</small>
+                  </div>
 
-                        <!-- Deal Type -->
-                        <div class="mb-3">
-                            <label for="dealType" class="form-label">Deal Type</label>
-                            <select class="form-control" id="dealType">
-                                <option value="" disabled selected>Select Deal Type</option>
-                                <option value="Equity Investment">Equity Investment</option>
-                                <option value="Convertible Note">Convertible Note</option>
-                                <option value="Venture Debt">Venture Debt</option>
-                                <option value="SAFE">SAFE (Future Equity)</option>
-                            </select>
-                            <small class="text-danger d-none" id="dealTypeError">Deal type is required.</small>
-                        </div>
+                  <!-- Deal Type -->
+                  <div class="mb-3">
+                      <label for="dealType" class="form-label">Deal Type</label>
+                      <select class="form-control" id="dealType">
+                          <option value="" disabled selected>Select Deal Type</option>
+                          <option value="Equity Investment">Equity Investment</option>
+                          <option value="Convertible Note">Convertible Note</option>
+                          <option value="Venture Debt">Venture Debt</option>
+                          <option value="SAFE">SAFE (Future Equity)</option>
+                      </select>
+                      <small class="text-danger d-none" id="dealTypeError">Deal type is required.</small>
+                  </div>
 
-                        <!-- Deal Description -->
-                        <div class="mb-3">
-                            <label for="dealDescription" class="form-label">Deal Description</label>
-                            <textarea class="form-control" id="dealDescription" rows="3" placeholder="Enter deal description"></textarea>
-                            <small class="text-danger d-none" id="dealDescriptionError">Deal description is required.</small>
-                        </div>
+                  <!-- Deal Description -->
+                  <div class="mb-3">
+                      <label for="dealDescription" class="form-label">Deal Description</label>
+                      <textarea class="form-control" id="dealDescription" rows="3" placeholder="Enter deal description"></textarea>
+                      <small class="text-danger d-none" id="dealDescriptionError">Deal description is required.</small>
+                  </div>
 
-                        <!-- Proposal Date -->
-                        <div class="mb-3">
-                            <label for="proposalDate" class="form-label">Date of Proposal</label>
-                            <input type="date" class="form-control" id="proposalDate">
-                            <small class="text-danger d-none" id="proposalDateError">Proposal date is required.</small>
-                        </div>
+                  <!-- Proposal Date -->
+                  <div class="mb-3">
+                      <label for="proposalDate" class="form-label">Date of Proposal</label>
+                      <input type="date" class="form-control" id="proposalDate">
+                      <small class="text-danger d-none" id="proposalDateError">Proposal date is required.</small>
+                  </div>
 
-                        <!-- Deal Closure Date -->
-                        <div class="mb-3">
-                            <label for="dealClosure" class="form-label">Deal Closure Date</label>
-                            <input type="date" class="form-control" id="dealClosure">
-                            <small class="text-danger d-none" id="dealClosureError">Deal closure date is required.</small>
-                        </div>
+                  <!-- Deal Closure Date -->
+                  <div class="mb-3">
+                      <label for="dealClosure" class="form-label">Deal Closure Date</label>
+                      <input type="date" class="form-control" id="dealClosure">
+                      <small class="text-danger d-none" id="dealClosureError">Deal closure date is required.</small>
+                  </div>
 
-                        <!-- Funding Stage -->
-                        <div class="mb-3">
-                            <label for="fundingStage" class="form-label">Funding Stage</label>
-                            <select class="form-control" id="fundingStage">
-                                <option value="" disabled selected>Select Funding Stage</option>
-                                <option value="Pre-Seed">Pre-Seed</option>
-                                <option value="Seed">Seed</option>
-                                <option value="Series A">Series A</option>
-                                <option value="Series B">Series B</option>
-                                <option value="Series C">Series C</option>
-                                <option value="Growth">Growth</option>
-                                <option value="Private Equity">Private Equity</option>
-                                <option value="IPO">IPO</option>
-                            </select>
-                            <small class="text-danger d-none" id="fundingStageError">Funding stage is required.</small>
-                        </div>
+                  <!-- Funding Stage -->
+                  <div class="mb-3">
+                      <label for="fundingStage" class="form-label">Funding Stage</label>
+                      <select class="form-control" id="fundingStage">
+                          <option value="" disabled selected>Select Funding Stage</option>
+                          <option value="Pre-Seed">Pre-Seed</option>
+                          <option value="Seed">Seed</option>
+                          <option value="Series A">Series A</option>
+                          <option value="Series B">Series B</option>
+                          <option value="Series C">Series C</option>
+                          <option value="Growth">Growth</option>
+                          <option value="Private Equity">Private Equity</option>
+                          <option value="IPO">IPO</option>
+                      </select>
+                      <small class="text-danger d-none" id="fundingStageError">Funding stage is required.</small>
+                  </div>
 
-                        <!-- Investment Amount -->
-                        <div class="mb-3">
-                            <label for="investmentAmount" class="form-label">Investment Amount</label>
-                            <input type="number" class="form-control" id="investmentAmount" placeholder="Enter amount">
-                            <small class="text-danger d-none" id="investmentAmountError">Investment amount is required.</small>
-                        </div>
+                  <!-- Investment Amount -->
+                  <div class="mb-3">
+                      <label for="investmentAmount" class="form-label">Investment Amount</label>
+                      <input type="number" class="form-control" id="investmentAmount" placeholder="Enter amount">
+                      <small class="text-danger d-none" id="investmentAmountError">Investment amount is required.</small>
+                  </div>
 
-                        <!-- Equity Stake -->
-                        <div class="mb-3">
-                            <label for="equityStake" class="form-label">%</label>
-                            <input type="number" class="form-control" id="equityStake" placeholder="Enter percentage">
-                            <small class="text-danger d-none" id="equityStakeError">Equity stake is required.</small>
-                        </div>
+                  <!-- % Stake/Interest Field -->
+                  <div class="mb-3">
+                      <label for="equityStake" class="form-label">%</label>
+                      <input type="number" class="form-control" id="equityStake" placeholder="Enter percentage">
+                      <small class="text-danger d-none" id="equityStakeError">Percentage is required.</small>
+                  </div>
 
-                        <!--External Resource-->
-                        <div class="mb-3">
-                          <label for="dealResourceLink" class="form-label">External Resource</label>
-                          <input type="url" class="form-control" id="dealResourceLink" placeholder="https://example.com">
-                        </div>
+                  <!-- External Resource -->
+                  <div class="mb-3">
+                      <label for="dealResourceLink" class="form-label">External Resource (Optional)</label>
+                      <input type="url" class="form-control" id="dealResourceLink" placeholder="https://example.com">
+                  </div>
 
-                        <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-primary" id="nextStep1">Next</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Step 2: Goal Entry -->
-                    <div class="step-2 d-none">
-                        <h5 class="mb-3">Goal Information</h5>
+                  <!-- Status Selection -->
+                  <div class="mb-3">
+                    <label for="dealStatus" class="form-label">Status</label>
+                    <select class="form-control" id="dealStatus">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="draft">Draft</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                    <div id="dealStatusError" class="text-danger d-none">Status is required.</div>
+                  </div>
 
-                        <!-- Goal Title -->
-                        <div class="mb-3">
-                            <label for="goalTitle" class="form-label">Goal</label>
-                            <input type="text" class="form-control" id="goalTitle" placeholder="Enter goal name">
-                            <small class="text-danger d-none" id="goalTitleError">Goal name is required.</small>
-                        </div>
-
-                        <!-- Goal Description -->
-                        <div class="mb-3">
-                            <label for="goalDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="goalDescription" rows="3" placeholder="Enter goal description"></textarea>
-                            <small class="text-danger d-none" id="goalDescriptionError">Description is required.</small>
-                        </div>
-
-                        <!-- Due Date -->
-                        <div class="mb-3">
-                            <label for="dueDate" class="form-label">Due Date</label>
-                            <input type="date" class="form-control" id="dueDate">
-                            <small class="text-danger d-none" id="dueDateError">Due date is required.</small>
-                        </div>
-
-                        <!-- Navigation Buttons -->
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-secondary" id="prevStep2">Back</button>
-                            <button type="button" class="btn btn-primary" id="nextStep2">Next</button>
-                        </div>
-                    </div>
-
-                    <!-- Step 3: Review & Submit -->
-                    <div class="step-3 d-none">
-                        <h5 class="mb-3">Review & Confirm</h5>
-                        <p class="text-muted">Please review the details before submitting.</p>
-
-                        <div class="border p-3 mb-3 rounded">
-                            <h6>Deal Information</h6>
-                            <p><strong>Deal Name:</strong> <span id="reviewDealName"></span></p>
-                            <p><strong>Deal Type:</strong> <span id="reviewDealType"></span></p>
-                            <p><strong>Deal Description:</strong> <span id="reviewDealDescription"></span></p>
-                            <p><strong>Proposal Date:</strong> <span id="reviewProposalDate"></span></p>
-                            <p><strong>Deal Closure Date:</strong> <span id="reviewDealClosure"></span></p>
-                            <p><strong>Funding Stage:</strong> <span id="reviewFundingStage"></span></p>
-                            <p><strong>Investment Amount:</strong> <span id="reviewInvestmentAmount"></span></p>
-                            <p><strong>%:</strong> <span id="reviewEquityStake"></span>%</p>
-                            <p><strong>External Resource</strong> <span id="reviewDealResourceLink"></span></p>
-                        </div>
-
-                        <div class="border p-3 rounded">
-                            <h6>Goal Information</h6>
-                            <p><strong>Goal Name:</strong> <span id="reviewGoalTitle"></span></p>
-                            <p><strong>Description:</strong> <span id="reviewGoalDescription"></span></p>
-                            <p><strong>Due Date:</strong> <span id="reviewDueDate"></span></p>
-                        </div>
-
-                        <div class="d-flex justify-content-between mt-4">
-                            <button type="button" class="btn btn-secondary" id="prevStep3">Back</button>
-                            <button type="submit" class="btn btn-success">Create Deal</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                  <!-- Submit Button -->
+                  <div class="d-flex justify-content-end">
+                      <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+                      <button type="submit" class="btn btn-primary">Create Deal</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
 </div>
+
 
 
     <!-- Edit Deal Modal -->
@@ -1270,10 +1214,16 @@
                             </select>
                         </div>
 
-                        <!-- % Stake/Interest Field -->
-                        <div class="mb-3">
-                          <label for="editPercentage" class="form-label">%</label>
-                          <input type="number" class="form-control" id="editPercentage">
+                      <!--Investment Amount Field -->
+                      <div class="mb-3">
+                        <label for="editInvestmentAmount" class="form-label">Total Investment Amount</label>
+                        <input type="number" class="form-control" id="editInvestmentAmount" placeholder="Enter Amount">
+                      </div>
+
+                      <!-- % Stake/Interest Field -->
+                      <div class="mb-3">
+                        <label for="editPercentage" class="form-label">%</label>
+                        <input type="number" class="form-control" id="editPercentage" placeholder="Enter percentage">
                       </div>
 
                       <!--External Resource-->
@@ -1282,6 +1232,24 @@
                         <input type="url" class="form-control" id="editResourceLink" placeholder="https://example.com">
                       </div>
 
+                      <!-- Status Dropdown -->
+                      <div class="mb-3">
+                        <label for="editDealStatus" class="form-label">Status</label>
+                        <select class="form-control" id="editDealStatus">
+                            <option value="draft">Draft</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                      </div>
+
+                      <!-- Checkbox for Closing the Deal -->
+                      <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="dealCloseCheckbox">
+                        <label class="form-check-label" for="dealCloseCheckbox">
+                            Close Deal
+                        </label>
+                      </div>
 
                         <!-- Actions -->
                         <div class="d-flex justify-content-end">
