@@ -34,47 +34,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to create a table row dynamically
   function createRow(firstName, lastName, email, group, status, inviteText) {
-      const uniqueId = `checkbox-${Date.now()}`;
+    const uniqueId = `checkbox-${Date.now()}`;
 
-      const statusClass = status === "Active" ? "border border-success text-success" : status === "Pending" ? "border border-warning text-warning" : "border border-danger text-danger";
-      const statusText = status === "Active" ? "Active" : status === "Pending" ? "Pending" : "Unsubscribed";
+    const statusClass = status === "Active" ? "border border-success text-success" : status === "Pending" ? "border border-warning text-warning" : "border border-danger text-danger";
+    const statusText = status === "Active" ? "Active" : status === "Pending" ? "Pending" : "Unsubscribed";
 
-      const newRow = document.createElement("tr");
-      newRow.innerHTML = `
-          <td class="table-column-pe-0">
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="${uniqueId}">
-                  <label class="form-check-label" for="${uniqueId}"></label>
-              </div>
-          </td>
-          <td>${firstName}</td>
-          <td>${lastName}</td>
-          <td>${email}</td>
-          <td>${group}</td>
-          <td>
-              <div>
-                  <span class="badge ${statusClass}">${statusText}</span>
-              </div>
-              <small class="text-muted invite-text">${inviteText}</small>
-              ${status === "Pending" || status === "Unsubscribed" ? `
-                  <button type="button" class="btn btn-link p-0 text-primary resend-btn" data-bs-toggle="tooltip" title="Resend Invite">
-                      <i class="bi-arrow-clockwise"></i>
-                  </button>
-              ` : ''}
-          </td>
-          <td>
-              <button class="btn btn-sm p-0 edit-milestone" data-bs-toggle="modal" data-bs-target="#editAdminModal" title="Edit">
-                  <i class="bi-pencil-fill fs-5"></i>
-              </button>
-              <button class="btn btn-sm p-0 delete-milestone" title="Delete">
-                  <i class="bi-trash-fill text-danger fs-5"></i>
-              </button>
-          </td>
-      `;
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+        <td class="table-column-pe-0">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="${uniqueId}">
+                <label class="form-check-label" for="${uniqueId}"></label>
+            </div>
+        </td>
+        <td>${firstName}</td>
+        <td>${lastName}</td>
+        <td>${email}</td>
+        <td>${group}</td>
+        <td>
+            ${getStatusBadge(status)}
+            <small class="text-muted invite-text">${inviteText}</small>
+        </td>
+        <td>
+            <button class="btn btn-sm p-0 edit-milestone" data-bs-toggle="modal" data-bs-target="#editInvestorModal" title="Edit">
+                <i class="bi-pencil-fill fs-5"></i>
+            </button>
+            <button class="btn btn-sm p-0 delete-milestone ms-4" title="Delete">
+                <i class="bi-trash-fill text-danger fs-5"></i>
+            </button>
+        </td>
+    `;
 
-      // Append new row to table
-      tableBody.appendChild(newRow);
-  }
+    // Append new row to table
+    tableBody.appendChild(newRow);
+}
+
+
 
   // Loop through sample data and create table rows
   sampleData.forEach(data => {
@@ -136,30 +131,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Handle Resend button click functionality
   tableBody.addEventListener("click", function (event) {
-      const resendButton = event.target.closest(".resend-btn");
-      if (resendButton) {
-          const row = resendButton.closest("tr");
-          const inviteTextElement = row.querySelector(".invite-text"); // Find the invite text
+    const resendButton = event.target.closest(".resend-btn");
+    if (resendButton) {
+        const row = resendButton.closest("tr");
+        const inviteTextElement = row.querySelector(".invite-text");
 
-          if (inviteTextElement) {
-              inviteTextElement.textContent = "0 invite left"; // Update invite text
-          }
+        if (inviteTextElement) {
+            inviteTextElement.textContent = "0 invite left";
+        }
 
-          // Show alert message
-          const alertDiv = document.createElement("div");
-          alertDiv.className = "alert alert-success position-fixed bottom-0 end-0 m-3";
-          alertDiv.textContent = "Invitation Sent";
-          alertDiv.style.width = "350px";
-          document.body.appendChild(alertDiv);
+        resendButton.disabled = true;
+        resendButton.setAttribute("data-bs-original-title", "Invite Sent");
+        const tooltip = bootstrap.Tooltip.getInstance(resendButton);
+        if (tooltip) tooltip.hide();
 
-          setTimeout(() => {
-              alertDiv.remove();
-          }, 3000);
+        const alertDiv = document.createElement("div");
+        alertDiv.className = "alert alert-success position-fixed bottom-0 end-0 m-3";
+        alertDiv.textContent = "Invitation Sent";
+        alertDiv.style.width = "350px";
+        document.body.appendChild(alertDiv);
 
-          // Disable the button
-          resendButton.disabled = true;
-      }
-  });
+        setTimeout(() => {
+            alertDiv.remove();
+        }, 3000);
+    }
+});
+
 
   // Handle Edit button click
   tableBody.addEventListener("click", function (event) {
@@ -175,41 +172,44 @@ document.addEventListener("DOMContentLoaded", function () {
           document.querySelector("#editFirstNameModalLabel").value = firstName;
           document.querySelector("#editLastNameModalLabel").value = lastName;
           document.querySelector("#editEmailModalLabel").value = email;
-          document.querySelector("#editGroupModalLabel").value = group.toLowerCase(); // Match the option in the dropdown
+          document.querySelector("#editGroupModalLabel").value = group; // Match the option in the dropdown
 
           // Show the modal
-          const modal = new bootstrap.Modal(document.getElementById("editAdminModal"));
+          const modal = new bootstrap.Modal(document.getElementById("editInvestorModal"));
           modal.show();
       }
   });
 
   // Handle Delete button click
+  let deleteRow = null;
+
   tableBody.addEventListener("click", function (event) {
       const deleteButton = event.target.closest(".delete-milestone");
       if (deleteButton) {
-          const row = deleteButton.closest("tr");
-          const firstName = row.cells[1].textContent;
-          const lastName = row.cells[2].textContent;
-
-          // Show confirmation modal with person's name
-          const confirmationMessage = `Are you sure you want to delete ${firstName} ${lastName}?`;
+          deleteRow = deleteButton.closest("tr");
+          const firstName = deleteRow.cells[1].textContent;
+          const lastName = deleteRow.cells[2].textContent;
+  
+          document.querySelector("#deleteConfirmationMessage").textContent =
+              `Are you sure you want to delete ${firstName} ${lastName}?`;
+  
           const confirmModal = new bootstrap.Modal(document.getElementById("deleteConfirmationModal"));
-          document.querySelector("#deleteConfirmationMessage").textContent = confirmationMessage;
-
-          // Show the confirmation modal
           confirmModal.show();
-
-          // Add delete functionality when confirmed
-          document.querySelector("#confirmDelete").addEventListener("click", function () {
-              row.remove();
-              confirmModal.hide();
-          });
       }
   });
+  
+  document.querySelector("#confirmDelete").addEventListener("click", function () {
+      if (deleteRow) {
+          deleteRow.remove();
+          deleteRow = null;
+          bootstrap.Modal.getInstance(document.getElementById("deleteConfirmationModal")).hide();
+      }
+  });
+  
 
   // Reset the background blur effect when modal is closed
-  const editAdminModal = document.getElementById('editAdminModal');
-  editAdminModal.addEventListener('hidden.bs.modal', function () {
+  const editInvestorModal = document.getElementById('editInvestorModal');
+  editInvestorModal.addEventListener('hidden.bs.modal', function () {
       const backdrop = document.querySelector('.modal-backdrop');
       if (backdrop) {
           backdrop.remove(); // Remove backdrop
