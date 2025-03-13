@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>${group.name}</td>
                 <td>${group.investors.join(", ")}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary edit-group" data-bs-toggle="modal" data-bs-target="#editGroupModal" data-id="${group.id}">Edit</button>
-                    <button class="btn btn-sm btn-danger delete-group" data-bs-toggle="modal" data-bs-target="#deleteGroupModal" data-id="${group.id}">Delete</button>
+                    <button class="btn edit-group" data-bs-toggle="modal" data-bs-target="#editGroupModal" data-id="${group.id}"><i class="bi-pencil-fill fs-5 mx-1"></i></button>
+                    <button class="btn text-danger delete-group" data-bs-toggle="modal" data-bs-target="#deleteGroupModal" data-id="${group.id}"><i class="bi-trash-fill fs-5"></i></button>
                 </td>
             `;
             groupsTableBody.appendChild(row);
