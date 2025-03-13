@@ -192,6 +192,29 @@ body {
 }
 
 /*-------------milestone page------------------------------------------*/
+
+/*-------------group page------------------------------------------*/
+#editInvestorSuggestions, #investorSuggestions {
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-width: 485px; /* Ensure it doesn't exceed the input width */
+
+}
+
+#selectedInvestorsContainer{
+    width: 30%;
+    display: flex;
+    gap: 10px;
+    
+}
+
+#editInvestorSearch {
+    position: relative;
+    width: 100%;
+}
+/*-------------group page------------------------------------------*/
 /*==============================================================================================*/
 
 
