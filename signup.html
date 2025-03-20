@@ -418,5 +418,13 @@
       }
     })()
   </script>
+  <script>
+    document.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent form submission to allow for redirection
+      
+      // Assuming form validation passes
+      window.location.href = "companyRegistration.html"; // Redirect to company registration page
+    });
+  </script>
 </body>
 </html>
